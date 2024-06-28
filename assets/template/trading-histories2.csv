@@ -1,0 +1,3 @@
+trading_account_id,trade_id,trade_date,asset,order,open_price,trade_status,close_date,close_price,pnl,margin,lot,rebate_percentage,rebate_amount
+USER123,3314,2024-06-24 19:00:00,EUR/USD,buy,1.1300,closed,2024-06-25 18:00:00,1.1250,50,1000,1,10,5
+USER123,3313,2024-06-23 13:00:00,GBP/USD,buy,1.2500,closed,2024-06-24 15:00:00,1.1350,-20,500,0.5,15,7.5
