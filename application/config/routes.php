@@ -76,28 +76,28 @@ $route['admin/kyc-management/(:any)'] = 'admin/kycmanagementcontroller/$1';
 $route['admin/balance-management/(:any)'] = 'admin/balancemanagementcontroller/$1';
 
 // Member routes
-$route['member'] = 'member/dashboardcontroller';
-$route['member/auth'] = 'member/authcontroller';
-$route['member/dashboard'] = 'member/dashboardcontroller';
-$route['member/trading'] = 'member/tradingcontroller';
-$route['member/topup'] = 'member/tradingcontroller/topuphistory';
-$route['member/withdrawal'] = 'member/tradingcontroller/withdrawalhistory';
-$route['member/account'] = 'member/accountcontroller';
-$route['member/profile'] = 'member/profilecontroller/edit';
-$route['member/support'] = 'member/supportcontroller';
-$route['member/news'] = 'member/newscontroller';
-$route['member/bonus'] = 'member/bonuscontroller';
+$route['member'] = 'member/DashboardController';
+$route['member/auth'] = 'member/AuthController';
+$route['member/dashboard'] = 'member/DashboardController';
+$route['member/trading'] = 'member/TradingController';
+$route['member/topup'] = 'member/TradingController/topupHistory';
+$route['member/withdrawal'] = 'member/TradingController/withdrawalHistory';
+$route['member/account'] = 'member/AccountController';
+$route['member/profile'] = 'member/ProfileController/edit';
+$route['member/support'] = 'member/SupportController';
+$route['member/news'] = 'member/NewsController';
+$route['member/bonus'] = 'member/BonusController';
 
 // $route['login']='home';
-$route['member/auth/(:any)/(:any)'] = 'member/authcontroller/$1/$2';
-$route['member/auth/(:any)'] = 'member/authcontroller/$1';
-$route['member/dashboard/(:any)'] = 'member/dashboardcontroller/$1';
-$route['member/trading/(:any)'] = 'member/tradingcontroller/$1';
-$route['member/account/(:any)'] = 'member/accountcontroller/$1';
-$route['member/profile/(:any)'] = 'member/profilecontroller/$1';
-$route['member/support/(:any)'] = 'member/supportcontroller/$1';
-$route['member/news/(:any)'] = 'member/newscontroller/$1';
-$route['member/bonus/(:any)'] = 'member/bonuscontroller/$1';
+$route['member/auth/(:any)/(:any)'] = 'member/AuthController/$1/$2';
+$route['member/auth/(:any)'] = 'member/AuthController/$1';
+$route['member/dashboard/(:any)'] = 'member/DashboardController/$1';
+$route['member/trading/(:any)'] = 'member/TradingController/$1';
+$route['member/account/(:any)'] = 'member/AccountController/$1';
+$route['member/profile/(:any)'] = 'member/ProfileController/$1';
+$route['member/support/(:any)'] = 'member/SupportController/$1';
+$route['member/news/(:any)'] = 'member/NewsController/$1';
+$route['member/bonus/(:any)'] = 'member/BonusController/$1';
 
 // Tool routes
 $route['tool'] = 'toolcontroller/index';
