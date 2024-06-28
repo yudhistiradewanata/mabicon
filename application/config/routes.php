@@ -54,26 +54,26 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Admin routes
-$route['admin'] = 'admin/dashboardcontroller';
-$route['admin/auth'] = 'admin/authcontroller';
-$route['admin/dashboard'] = 'admin/dashboardcontroller';
-$route['admin/client-management'] = 'admin/clientmanagementcontroller';
-$route['admin/trading-management'] = 'admin/tradingmanagementcontroller';
-$route['admin/transaction-management'] = 'admin/transactionmanagementcontroller';
-$route['admin/bonus-management'] = 'admin/bonusmanagementcontroller';
-$route['admin/balance-management'] = 'admin/balancemanagementcontroller';
-$route['admin/support'] = 'admin/supportcontroller';
-$route['admin/kyc-management'] = 'admin/kycmanagementcontroller';
+$route['admin'] = 'Admin/DashboardController';
+$route['admin/auth'] = 'Admin/AuthController';
+$route['admin/dashboard'] = 'Admin/DashboardController';
+$route['admin/client-management'] = 'Admin/ClientManagementController';
+$route['admin/trading-management'] = 'Admin/TradingManagementController';
+$route['admin/transaction-management'] = 'Admin/TransactionManagementController';
+$route['admin/bonus-management'] = 'Admin/BonusManagementController';
+$route['admin/balance-management'] = 'Admin/BalanceManagementController';
+$route['admin/support'] = 'Admin/SupportController';
+$route['admin/kyc-management'] = 'Admin/KYCManagementController';
 
-$route['admin/auth/(:any)'] = 'admin/authcontroller/$1';
-$route['admin/dashboard/(:any)'] = 'admin/dashboardcontroller/$1';
-$route['admin/client-management/(:any)'] = 'admin/clientmanagementcontroller/$1';
-$route['admin/trading-management/(:any)'] = 'admin/tradingmanagementcontroller/$1';
-$route['admin/transaction-management/(:any)'] = 'admin/transactionmanagementcontroller/$1';
-$route['admin/bonus-management/(:any)'] = 'admin/bonusmanagementcontroller/$1';
-$route['admin/support/(:any)'] = 'admin/supportcontroller/$1';
-$route['admin/kyc-management/(:any)'] = 'admin/kycmanagementcontroller/$1';
-$route['admin/balance-management/(:any)'] = 'admin/balancemanagementcontroller/$1';
+$route['admin/auth/(:any)'] = 'Admin/AuthController/$1';
+$route['admin/dashboard/(:any)'] = 'Admin/DashboardController/$1';
+$route['admin/client-management/(:any)'] = 'Admin/ClientManagementController/$1';
+$route['admin/trading-management/(:any)'] = 'Admin/TradingManagementController/$1';
+$route['admin/transaction-management/(:any)'] = 'Admin/TransactionManagementController/$1';
+$route['admin/bonus-management/(:any)'] = 'Admin/BonusManagementController/$1';
+$route['admin/support/(:any)'] = 'Admin/SupportController/$1';
+$route['admin/kyc-management/(:any)'] = 'Admin/KYCManagementController/$1';
+$route['admin/balance-management/(:any)'] = 'Admin/BalanceManagementController/$1';
 
 $route['member'] = 'Member/DashboardController';
 $route['member/auth'] = 'Member/AuthController';
@@ -99,7 +99,7 @@ $route['member/bonus/(:any)'] = 'Member/BonusController/$1';
 
 
 // Tool routes
-$route['tool'] = 'toolcontroller/index';
-$route['tool/(:any)'] = 'toolcontroller/$1';
-$route['tool/(:any)/(:any)'] = 'toolcontroller/$1/$2';
-$route['createTestData'] = 'tool/createTestData';
+$route['tool'] = 'ToolController/index';
+$route['tool/(:any)'] = 'ToolController/$1';
+$route['tool/(:any)/(:any)'] = 'ToolController/$1/$2';
+$route['createTestData'] = 'ToolController/createTestData';
