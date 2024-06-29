@@ -27,4 +27,14 @@
 #auth-particles .bg-overlay{
 	background:none;
 }
+.copy-text{
+	color: blue;
+	text-decoration: underline;
+	font-weight: bold;
+	cursor:pointer;
+}
+input[readonly]  {
+    background-color: var(--vz-tertiary-bg)!important;
+    opacity: 1;
+}
 </style>

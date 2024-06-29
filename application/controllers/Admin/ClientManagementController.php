@@ -8,6 +8,7 @@ class ClientManagementController extends MY_Controller
         $filters = [
             'username' => $this->input->get('username'),
             'email' => $this->input->get('email'),
+            'referral_username' => $this->input->get('referral_username'),
             'created_by' => $this->input->get('created_by'),
             'current_tier_id' => $this->input->get('current_tier_id'),
             'user_id' => $this->input->get('user_id'),
@@ -19,7 +20,7 @@ class ClientManagementController extends MY_Controller
         $users = $this->userModel->getUsers(array_filter($filters));
 
         foreach ($users as $user) {
-            $user->current_balance = $this->db->where('user_id', $user->id)->select('sum(debit_amount-credit_amount) as amount')->get('balances')->row()->amount;
+            $user->current_balance = $this->db->where('user_id', $user->id)->select('ifnull(sum(debit_amount-credit_amount),0) as amount')->get('balances')->row()->amount;
             $user->has_pending_deposit = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('top_up_requests') > 0;
             $user->has_pending_withdrawal = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('withdrawal_requests') > 0;
         }

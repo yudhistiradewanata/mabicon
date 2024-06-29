@@ -40,11 +40,7 @@
                                     <p class="text-muted">Sign in to continue to Member System.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <?php if(!empty($this->session->flashdata('error'))): ?>
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong> Error! </strong> <?= $this->session->flashdata('error') ?>
-                                    </div>
-                                    <?php endif; ?>
+                                    <?=showFlashData()?>
                                     <?=form_open('member/auth/login')?>
                                         <input type="hidden" id="browser-code" name="browserCode">
                                         <input type="hidden" id="platform" name="platform">

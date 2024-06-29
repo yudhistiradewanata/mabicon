@@ -26,6 +26,7 @@
         </div>
     </div>
 </div>
+<div class="alert alert-primary">Your Referral Link: <span class="copy-text"><?=site_url('member/auth/register/'.getSession('username'))?></span></div>
 <div class="row">
     <div class="col-xxl-3 col-md-6">
         <div class="card card-animate" onclick="location.href='<?=site_url('member/account')?>'">

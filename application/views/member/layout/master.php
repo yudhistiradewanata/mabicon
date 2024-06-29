@@ -47,5 +47,16 @@
     <script src="<?=base_url('assets/js/pages/dashboard-crm.init.js')?>"></script>
     <!-- App js -->
     <script src="<?=base_url('assets/js/app.js')?>"></script>
+    <script>
+        $('.copy-text').on('click', function() {
+            var text = $(this).text();
+            var $temp = $('<textarea>');
+            $('body').append($temp);
+            $temp.val(text).select();
+            document.execCommand('copy');
+            $temp.remove();
+            alert('Link copied to clipboard');
+        });
+    </script>
 </body>
 </html>

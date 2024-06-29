@@ -19,14 +19,18 @@
                         <input type="text" class="form-control" id="username" name="username" value="<?= $this->input->get('username') ?>" placeholder="Username">
                     </div>
                     <div class="col-md-3">
+                        <label for="username" class="form-label">Referral</label>
+                        <input type="text" class="form-control" id="referral_username" name="referral_username" value="<?= $this->input->get('referral_username') ?>" placeholder="Referral Username">
+                    </div>
+                    <div class="col-md-2">
                         <label for="join_date_from" class="form-label">Join Date From</label>
                         <input type="text" class="form-control datepicker" id="join_date_from" name="join_date_from" value="<?= $this->input->get('join_date_from') ?>" placeholder="YYYY-MM-DD">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="join_date_to" class="form-label">Join Date To</label>
                         <input type="text" class="form-control datepicker" id="join_date_to" name="join_date_to" value="<?= $this->input->get('join_date_to') ?>" placeholder="YYYY-MM-DD">
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
+                    <div class="col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </div>
                 </div>
@@ -49,7 +53,7 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Username</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Referral</th>
                             <th scope="col">Name</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Join Date</th>
@@ -63,7 +67,7 @@
                         <tr>
                             <td><?= $i + 1 ?></td>
                             <td><?= $user->username ?></td>
-                            <td><?= $user->email ?></td>
+                            <td><?= $user->referral_username ?></td>
                             <td><?= $user->full_name ?></td>
                             <td><?= $user->phone_number ?></td>
                             <td><?= date('Y-m-d', strtotime($user->created_at)) ?></td>
