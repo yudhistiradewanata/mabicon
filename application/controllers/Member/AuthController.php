@@ -80,9 +80,11 @@ class AuthController extends MY_Controller
                 redirect($this->input->server('HTTP_REFERER'));
             }
         }
+        $data=[];
         if(!empty($referral_username)){
             $data['referral_username']=$referral_username;
         }
+
 
         $this->load->view('member/auth/register',$data);
     }
