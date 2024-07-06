@@ -14,7 +14,7 @@
         <?= form_open('admin/transaction-management', ['method' => 'get']) ?>
         <div class="row g-3">
             <div class="col-md-4">
-                <input type="text" class="form-control" name="user_id" placeholder="User ID" value="<?= $filters['user_id'] ?? '' ?>">
+                <input type="text" class="form-control" name="search" placeholder="User ID / Account ID" value="<?= $filters['search'] ?? '' ?>">
             </div>
             <div class="col-md-3">
                 <select class="form-select" name="transaction_type">
@@ -50,6 +50,7 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">User ID</th>
+                            <th scope="col">Account ID</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Date</th>
                             <th scope="col">Proof</th>
@@ -61,13 +62,14 @@
                         <tr>
                             <td><?= $i + 1 ?></td>
                             <td><?= $deposit->username ?></td>
+                            <td><?= $deposit->account_id ?></td>
                             <td><?= number_format($deposit->topup_amount, 2) ?></td>
                             <td><?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?></td>
-                            <td><img src="<?= base_url('uploads/proofs/' . $deposit->transfer_proof_file) ?>" alt="Proof Image" style="width: 50px; height: 50px;"></td>
+                            <td><img src="<?= base_url('assets/uploads/deposit/' . $deposit->transfer_proof_file) ?>" alt="Proof Image" style="width: 50px; height: 50px;"></td>
                             <td>
                                 <?php if($deposit->status=='pending'){?>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="showDepositModal(<?= $deposit->id ?>, '<?= $deposit->username ?>', <?= $deposit->topup_amount ?>, '<?= base_url('uploads/proofs/' . $deposit->transfer_proof_file) ?>', '<?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?>')">Approve</button>
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="showDepositModal(<?= $deposit->id ?>, '<?= $deposit->username ?>', <?= $deposit->topup_amount ?>, '<?= base_url('uploads/proofs/' . $deposit->transfer_proof_file) ?>', '<?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?>')">Reject</button>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="showDepositModal(<?= $deposit->id ?>, '<?= $deposit->username ?>', <?= $deposit->topup_amount ?>, '<?= base_url('assets/uploads/deposit/' . $deposit->transfer_proof_file) ?>', '<?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?>')">Approve</button>
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="showDepositModal(<?= $deposit->id ?>, '<?= $deposit->username ?>', <?= $deposit->topup_amount ?>, '<?= base_url('assets/uploads/deposit/' . $deposit->transfer_proof_file) ?>', '<?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?>')">Reject</button>
                                 <?php }else{ ?>
                                     <?php if($deposit->status=='approved'){?>
                                         <span class="badge bg-success-subtle text-success fs-11"><i class="ri-time-line align-bottom"></i> Approved</span>
@@ -98,6 +100,7 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">User ID</th>
+                            <th scope="col">Account ID</th>
                             <th scope="col">Amount</th>
                             <th scope="col">USDT Address</th>
                             <th scope="col">Actions</th>
@@ -108,6 +111,7 @@
                         <tr>
                             <td><?= $i + 1 ?></td>
                             <td><?= $withdrawal->username ?></td>
+                            <td><?= $withdrawal->account_id ?></td>
                             <td><?= number_format($withdrawal->withdrawal_amount, 2) ?></td>
                             <td><?= $withdrawal->usdt_address ?></td>
                             <td>

@@ -43,22 +43,30 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?=site_url('admin/trading-account-management')?>" class="nav-link">
+                        <i class="ri-dashboard-2-line"></i> <span>Account Request</span>
+                        &nbsp;<span class="topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"><?=$countBadge['countPendingAccount']?></span>
+                    </a>
+
+                </li>
+                
+                <li class="nav-item">
                     <a href="<?=site_url('admin/kyc-management')?>" class="nav-link">
                         <i class="ri-dashboard-2-line"></i> <span>KYC Request</span>
                         &nbsp;<span class="topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"><?=$countBadge['countPendingKyc']?></span>
                     </a>
 
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?=site_url('admin/trading-management')?>" class="nav-link">
                         <i class="ri-coins-fill"></i> <span>Trades</span>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a href="<?=site_url('admin/balance-management')?>" class="nav-link">
                         <i class="ri-wallet-line"></i> <span>Account Balances</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                         <i class="ri-account-circle-line"></i> <span data-key="t-authentication">Deposit & WD</span>
@@ -69,6 +77,11 @@
                             <li class="nav-item">
                                 <a href="<?=site_url('admin/transaction-management/pending')?>" class="nav-link">
                                     <i class="ri-exchange-dollar-line"></i> <span>Pending Request</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=site_url('admin/transaction-management/pendingtransferwithdrawal')?>" class="nav-link">
+                                    <i class="ri-exchange-line"></i> <span>Pending Transfer WD</span>
                                 </a>
                             </li>
                             <li class="nav-item">

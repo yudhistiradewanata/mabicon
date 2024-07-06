@@ -57,7 +57,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Join Date</th>
-                            <th scope="col">Current Balance</th>
+                            <!-- <th scope="col">Current Balance</th> -->
                             <th scope="col">Pending Deposit</th>
                             <th scope="col">Pending Withdrawal</th>
                         </tr>
@@ -71,7 +71,7 @@
                             <td><?= $user->full_name ?></td>
                             <td><?= $user->phone_number ?></td>
                             <td><?= date('Y-m-d', strtotime($user->created_at)) ?></td>
-                            <td><?= number_format($user->current_balance, 2) ?></td>
+                            <!-- <td><?= number_format($user->current_balance, 2) ?></td> -->
                             <td><?= $user->has_pending_deposit ? 'Yes' : 'No' ?></td>
                             <td><?= $user->has_pending_withdrawal ? 'Yes' : 'No' ?></td>
                         </tr>

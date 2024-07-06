@@ -37,8 +37,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?=site_url('member/account')?>" class="nav-link">
+                    <!-- <a href="<?=site_url('member/account')?>" class="nav-link">
                         <i class="ri-dashboard-2-line"></i> <span>Account Balance</span>
+                    </a> -->
+                    <a href="<?=site_url('member/tradingaccount')?>" class="nav-link">
+                        <i class="ri-dashboard-2-line"></i> <span>Trading Account</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -51,11 +54,11 @@
                         <i class="ri-exchange-dollar-line"></i> <span>Withdrawal</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?=site_url('member/trading')?>" class="nav-link">
                         <i class="ri-funds-line"></i> <span>Trading</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="<?=site_url('member/news')?>" class="nav-link">
                         <i class="ri-newspaper-line"></i> <span>News</span>

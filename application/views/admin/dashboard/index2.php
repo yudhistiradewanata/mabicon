@@ -40,7 +40,8 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2"><?= number_format($totalPnl, 2) ?></h3>
+                <!-- <h3 class="mb-2"><?= number_format($totalPnl, 2) ?></h3> -->
+                <h3 class="mb-2">Coming Soon...</h3>
                 <h6 class="text-muted mb-0">Total PnL</h6>
             </div>
         </div>
@@ -56,7 +57,8 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2"><?= number_format($totalBonusesDistributed, 2) ?></h3>
+                <!-- <h3 class="mb-2"><?= number_format($totalBonusesDistributed, 2) ?></h3> -->
+                <h3 class="mb-2">Coming Soon...</h3>
                 <h6 class="text-muted mb-0">Total Bonuses Distributed</h6>
             </div>
         </div>
@@ -72,7 +74,8 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2"><?= number_format($totalOpenTrade, 2) ?></h3>
+                <!-- <h3 class="mb-2"><?= number_format($totalOpenTrade, 2) ?></h3> -->
+                <h3 class="mb-2">Coming Soon...</h3>
                 <h6 class="text-muted mb-0">Total Open Trades</h6>
             </div>
         </div>

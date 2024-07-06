@@ -12,6 +12,12 @@ class withdrawalRequestModel extends CI_Model
         if (isset($filter['user_id']) && !empty($filter['user_id'])) {
             $this->db->where('w.user_id', $filter['user_id']);
         }
+        if (isset($filter['account_id']) && !empty($filter['account_id'])) {
+            $this->db->where('w.account_id', $filter['account_id']);
+        }
+        if (isset($filter['search']) && !empty($filter['search'])) {
+            $this->db->group_start()->like('u.username', $filter['search'])->or_like('t.account_id',$filter['search'])->group_end();
+        }
 
         if (isset($filter['user_ids']) && !empty($filter['user_ids'])) {
             $this->db->where_in('w.user_id', $filter['user_ids']);
@@ -38,6 +44,7 @@ class withdrawalRequestModel extends CI_Model
     {
         // Extract data from the array
         $user_id = $data['user_id'];
+        $account_id = $data['account_id'];
         $withdrawal_amount = $data['withdrawal_amount'];
         $otp = $data['otp_sent_to_email'];
         $usdt_address = $data['usdt_address'];
@@ -47,6 +54,7 @@ class withdrawalRequestModel extends CI_Model
         // Prepare data for insertion
         $insertData = [
             'user_id' => $user_id,
+            'account_id'=>$account_id,
             'withdrawal_amount' => $withdrawal_amount,
             'otp_sent_to_email' => $otp,
             'usdt_address' => $usdt_address,
@@ -60,8 +68,8 @@ class withdrawalRequestModel extends CI_Model
         $this->db->insert($this->table, $insertData);
         $new_id=$this->db->insert_id();
         // Credit the user's balance and create a withdrawal transaction
-        $this->balanceModel->insertCredit($user_id, $withdrawal_amount, 'withdrawal_requests',$new_id,'Withdrawal Request of '.$withdrawal_amount);
-        $this->transactionModel->insertWithdrawal($user_id, $withdrawal_amount, 'Withdrawal request created');
+        $this->balanceModel->insertCredit($user_id, $account_id, $withdrawal_amount, 'withdrawal_requests',$new_id,'Withdrawal Request of '.$withdrawal_amount);
+        $this->transactionModel->insertWithdrawal($user_id, $account_id, $withdrawal_amount, 'Withdrawal request created');
         return $new_id;
     }
 
@@ -88,8 +96,8 @@ class withdrawalRequestModel extends CI_Model
         if ($withdrawalRequest) {
             
             // Refund the user's balance and create a reversal transaction
-            $this->balanceModel->insertDebit($withdrawalRequest['user_id'], $withdrawalRequest['withdrawal_amount'], 'withdrawal_requests',$request_id,'Rejected Withdrawal Request of '.$withdrawalRequest->withdrawal_amount);
-            $this->transactionModel->insertWithdrawal($withdrawalRequest['user_id'], -$withdrawalRequest['withdrawal_amount'], 'Withdrawal request rejected');
+            $this->balanceModel->insertDebit($withdrawalRequest['user_id'], $withdrawalRequest['account_id'], $withdrawalRequest['withdrawal_amount'], 'withdrawal_requests',$request_id,'Rejected Withdrawal Request of '.$withdrawalRequest->withdrawal_amount);
+            $this->transactionModel->insertWithdrawal($withdrawalRequest['user_id'], $withdrawalRequest['account_id'], -$withdrawalRequest['withdrawal_amount'], 'Withdrawal request rejected');
 
             // Update withdrawal request status
             $withdrawalRequest['status'] = 'rejected';
@@ -109,8 +117,8 @@ class withdrawalRequestModel extends CI_Model
         if ($withdrawalRequest && $withdrawalRequest['status'] == 'pending') {
             
             // Refund the user's balance and create a reversal transaction
-            $this->balanceModel->insertDebit($withdrawalRequest['user_id'], $withdrawalRequest['withdrawal_amount'], 'withdrawal_requests',$request_id,'Canceled Withdrawal Request of '.$withdrawalRequest->withdrawal_amount);
-            $this->transactionModel->insertWithdrawal($withdrawalRequest['user_id'], -$withdrawalRequest['withdrawal_amount'], 'Withdrawal request canceled');
+            $this->balanceModel->insertDebit($withdrawalRequest['user_id'], $withdrawalRequest['account_id'], $withdrawalRequest['withdrawal_amount'], 'withdrawal_requests',$request_id,'Canceled Withdrawal Request of '.$withdrawalRequest->withdrawal_amount);
+            $this->transactionModel->insertWithdrawal($withdrawalRequest['user_id'], $withdrawalRequest['account_id'], -$withdrawalRequest['withdrawal_amount'], 'Withdrawal request canceled');
 
             // Update withdrawal request status
             $withdrawalRequest['status'] = 'canceled';

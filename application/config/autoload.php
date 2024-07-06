@@ -151,5 +151,6 @@ $autoload['model'] = array(
     'KYCModel' => 'kycModel',
     'TierModel' => 'tierModel',
     'RebateBonusConfigModel' => 'rebateBonusConfigModel',
-    'WelcomeBonusConfigModel' => 'welcomeBonusConfigModel'
+    'WelcomeBonusConfigModel' => 'welcomeBonusConfigModel',
+    'TradingAccountModel' => 'tradingAccountModel'
 );

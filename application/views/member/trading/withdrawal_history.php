@@ -13,6 +13,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Account ID</th>
                             <th>Date</th>
                             <th>Trf To</th>
                             <th>Amount</th>
@@ -24,6 +25,7 @@
                         <?php foreach($withdrawalRequests as $i=>$row){?>
                         <tr>
                             <td><?=($i+1)?></td>
+                            <td><?=$row->account_id?></td>
                             <td><?=dmy($row->created_at)?></td>
                             <td><?=format_str($row->usdt_address)?></td>
                             <td><?=number_format($row->withdrawal_amount,2)?></td>
@@ -47,6 +49,14 @@
       <div class="modal-body text-center p-5">
         <?= form_open_multipart('member/trading/withdraw') ?>
           <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="account_id" class="form-label">Trading Account</label>
+                <select class="form-control" id="account_id" name="account_id" required>
+                    <?php foreach($tradingAccounts as $account): ?>
+                        <option value="<?= $account->account_id ?>"><?= $account->account_id ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <div class="mb-3 col-md-6">
               <label for="withdrawal_amount" class="form-label">Withdrawal Amount</label>
               <input type="number" step="0.01" class="form-control" id="withdrawal_amount" name="withdrawal_amount" required>

@@ -9,7 +9,9 @@ class BalanceModel extends CI_Model
         if (isset($filter['user_id']) && !empty($filter['user_id'])) {
             $this->db->where('user_id', $filter['user_id']);
         }
-
+        if (isset($filter['account_id']) && !empty($filter['account_id'])) {
+            $this->db->where('account_id', $filter['account_id']);
+        }
         if (isset($filter['user_ids']) && !empty($filter['user_ids'])) {
             $this->db->where_in('user_id', $filter['user_ids']);
         }
@@ -28,11 +30,12 @@ class BalanceModel extends CI_Model
         return $this->db->where('id',$id)->get($this->table)->row();
     }
     
-    public function insertCredit($user_id, $amount, $associated_with,$associated_id,$notes='')
+    public function insertCredit($user_id, $account_id, $amount, $associated_with,$associated_id,$notes='')
     {
         $lastBalance = $this->getLastBalanceAmount($user_id);
         $data = [
             'user_id' => $user_id,
+            'account_id' => $account_id,
             'previous_amount' => $lastBalance,
             'debit_amount' => 0,
             'credit_amount' => $amount,
@@ -49,11 +52,12 @@ class BalanceModel extends CI_Model
         return $this->db->insert($this->table,$data);
     }
 
-    public function insertDebit($user_id, $amount, $associated_with,$associated_id,$notes='')
+    public function insertDebit($user_id, $account_id, $amount, $associated_with,$associated_id,$notes='')
     {
         $lastBalance = $this->getLastBalanceAmount($user_id);
         $data = [
             'user_id' => $user_id,
+            'account_id' => $account_id,
             'previous_amount' => $lastBalance,
             'debit_amount' => $amount,
             'credit_amount' => 0,

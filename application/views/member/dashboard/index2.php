@@ -39,8 +39,11 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$balanceSummary->total_balance?>">0</span><small class="text-muted fs-13"></small></h3>
-                <h6 class="text-muted mb-0">Account Balance</h6>
+                <h3 class="mb-2">
+                    $<span class="counter-value" data-target="<?=$transactionSummary->pending_deposit?>">0</span><small class="text-muted fs-13"></small>
+                    <!-- Coming Soon... -->
+                </h3>
+                <h6 class="text-muted mb-0">Pending Deposit</h6>
             </div>
         </div>
         <!--end card-->
@@ -57,8 +60,8 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$tradingSummary->total_pnl?>">0</span><small class="text-muted fs-13"></small></h3>
-                <h6 class="text-muted mb-0">Total PnL</h6>
+                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$transactionSummary->total_deposit?>">0</span><small class="text-muted fs-13"></small></h3>
+                <h6 class="text-muted mb-0">Total Deposit </h6>
             </div>
         </div>
         <!--end card-->
@@ -75,8 +78,11 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$bonusSummary->total_bonus?>">0</span><small class="text-muted fs-13"></small></h3>
-                <h6 class="text-muted mb-0">Total Bonus</h6>
+                <h3 class="mb-2">
+                    $<span class="counter-value" data-target="<?=$transactionSummary->pending_withdrawal?>">0</span><small class="text-muted fs-13"></small>
+                    <!-- Coming Soon... -->
+                </h3>
+                <h6 class="text-muted mb-0">Pending Withdrawal</h6>
             </div>
         </div>
         <!--end card-->
@@ -93,8 +99,8 @@
                         <a href="javascript:void(0);" class="badge bg-warning-subtle text-warning badge-border">USD</a>
                     </div>
                 </div>
-                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$tradingSummary->total_margin?>">0</span><small class="text-muted fs-13"></small></h3>
-                <h6 class="text-muted mb-0">Trading Volume</h6>
+                <h3 class="mb-2">$<span class="counter-value" data-target="<?=$transactionSummary->total_withdrawal?>">0</span><small class="text-muted fs-13"></small></h3>
+                <h6 class="text-muted mb-0">Total Withdrawal</h6>
             </div>
         </div>
         <!--end card-->

@@ -42,6 +42,7 @@ class TradingController extends MY_Controller
         if (getRequestMethod() == 'post') {
             $data = [
                 'user_id' => $this->session->userdata('user_id'),
+                'account_id' => $this->input->post('account_id'),
                 'topup_amount' => $this->input->post('topup_amount'),
                 'topup_date' => $this->input->post('topup_date'),
                 'transfer_destination' => $this->input->post('transfer_destination'),
@@ -67,7 +68,7 @@ class TradingController extends MY_Controller
             }
 
             // Insert data into database
-            if ($this->db->insert('top_up_requests',$data)) {
+            if ($this->topUpRequestModel->insertTopUpRequest($data['user_id'], $data['account_id'], $data['topup_amount'], $data['transfer_proof_file'], $data['transfer_destination'])) {
                 $this->session->set_flashdata('success', 'Top-Up Request created successfully.');
                 redirect('member/topup');
             } else {
@@ -75,14 +76,23 @@ class TradingController extends MY_Controller
                 redirect('member/topup');
             }
         }
-        $content = $this->load->view('member/trading/top_up', true);
-        $this->load->view('member/layout/master', ['content' => $content, 'title' => 'Top Up']);
+
+        // Get trading accounts for the logged-in user
+        $user_id = $this->session->userdata('user_id');
+        $trading_accounts = $this->tradingAccountModel->getTradingAccounts(['user_id' => $user_id]);
+
+        $data = [
+            'trading_accounts' => $trading_accounts
+        ];
+
+        redirect('member/topup');
     }
 
     public function withdraw()
     {
         if (getRequestMethod() == 'post') {
             $userId = $this->session->userdata('user_id');
+            $accountId = $this->input->post('account_id');
             $withdrawal_amount = $this->input->post('withdrawal_amount');
             $otp = $this->input->post('otp');
             $usdtAddress = $this->input->post('usdt_address');
@@ -96,21 +106,23 @@ class TradingController extends MY_Controller
 
             // Check if amount is valid (You can add more logic here to check available balance if necessary)
             // Assuming you have a function getAvailableBalance($userId) in your userModel
-            $availableBalance = $this->balanceModel->getBalanceSummary($userId)->total_balance;
-            if ($withdrawal_amount > $availableBalance) {
-                $this->session->set_flashdata('error', 'Insufficient balance. Please try again.');
-                redirect($this->input->server('HTTP_REFERER'));
-            }
+            // $availableBalance = $this->balanceModel->getBalanceSummary($userId)->total_balance;
+            // if ($withdrawal_amount > $availableBalance) {
+            //     $this->session->set_flashdata('error', 'Insufficient balance. Please try again.');
+            //     redirect($this->input->server('HTTP_REFERER'));
+            // }
 
             // Prepare data for insertion
             $data = [
                 'user_id' => $userId,
+                'account_id'=>$accountId,
                 'withdrawal_amount' => $withdrawal_amount,
                 'otp_sent_to_email' => $user->email,
                 'otp'=>$otp,
                 'usdt_address' => $usdtAddress,
                 'status' => 'pending'
             ];
+            // pre($data);
             $this->db->trans_start();
             // Insert withdrawal request into the database
             if ($this->withdrawalRequestModel->insertWithdrawalRequest($data)) {
@@ -127,8 +139,7 @@ class TradingController extends MY_Controller
             }
         }
 
-        $content = $this->load->view('member/trading/withdraw', true);
-        $this->load->view('member/layout/master', ['content' => $content, 'title' => 'Withdraw']);
+        redirect('member/withdrawal');
     }
 
     public function topUpHistory()
@@ -137,9 +148,10 @@ class TradingController extends MY_Controller
         
         // Get user's top-up request history
         $topUpRequests = $this->db->where('user_id', $userId)->order_by('topup_date', 'DESC')->get('top_up_requests')->result();
-
+        $tradingAccounts=$this->db->where('user_id',$userId)->where('status','approved')->get('trading_accounts')->result();
         $data = [
-            'topUpRequests' => $topUpRequests
+            'topUpRequests' => $topUpRequests,
+            'tradingAccounts'=>$tradingAccounts
         ];
 
         $content = $this->load->view('member/trading/top_up_history', $data, true);
@@ -153,9 +165,11 @@ class TradingController extends MY_Controller
         // Get user's withdrawal request history
         $withdrawalRequests = $this->db->where('user_id', $userId)->order_by('created_at', 'DESC')->get('withdrawal_requests')->result();
         $usdtAddresses=$this->db->where('user_id',$userId)->order_by('is_default desc')->get('usdt_addresses')->result();
+        $tradingAccounts=$this->db->where('user_id',$userId)->where('status','approved')->get('trading_accounts')->result();
         $data = [
             'withdrawalRequests' => $withdrawalRequests,
-            'usdtAddresses'=>$usdtAddresses
+            'usdtAddresses'=>$usdtAddresses,
+            'tradingAccounts'=>$tradingAccounts
         ];
 
         $content = $this->load->view('member/trading/withdrawal_history', $data, true);

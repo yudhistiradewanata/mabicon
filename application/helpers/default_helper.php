@@ -75,7 +75,9 @@ function getAdminCountBadge(){
     $countPendingKyc=$ci->db->where('status','pending')->count_all_results('kyc');
     $countPendingWithdrawal=$ci->db->where('status','pending')->count_all_results('withdrawal_requests');
     $countPendingTopup=$ci->db->where('status','pending')->count_all_results('top_up_requests');
+    $countPendingAccount=$ci->db->where('status','pending')->count_all_results('trading_accounts');
     return [
+        'countPendingAccount'=>$countPendingAccount?:0,
         'countPendingKyc'=>$countPendingKyc?:0,
         'countPendingTransaction'=>($countPendingWithdrawal?:0)+($countPendingTopup?:0)
     ];

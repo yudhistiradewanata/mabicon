@@ -44,14 +44,14 @@ class TradingHistoryModel extends CI_Model
         $trades = $this->csvreader->parse_file($filePath);
 
         // Get unique trading account IDs from the CSV
-        $tradingAccountIds = array_unique(array_column($trades, 'trading_account_id'));
+        $tradingAccountIds = array_unique(array_column($trades, 'account_id'));
         $tradeIds = array_column($trades, 'trade_id');
 
-        // Get users mapped by trading_account_id
-        $users = $this->db->where_in('trading_account_id', $tradingAccountIds)
+        // Get users mapped by account_id
+        $users = $this->db->where_in('account_id', $tradingAccountIds)
                           ->get('users')
                           ->result_array();
-        $userMap = array_column($users, null, 'trading_account_id');
+        $userMap = array_column($users, null, 'account_id');
 
         // Get existing trades to check for duplicates and status changes
         $existingTrades = $this->db->where_in('trade_id', $tradeIds)
@@ -78,8 +78,8 @@ class TradingHistoryModel extends CI_Model
         $rebateBonuses = [];
 
         foreach ($trades as $trade) {
-            if (isset($userMap[$trade['trading_account_id']])) {
-                $userId = $userMap[$trade['trading_account_id']]['id'];
+            if (isset($userMap[$trade['account_id']])) {
+                $userId = $userMap[$trade['account_id']]['id'];
 
                 // Check if trade already exists
                 $existingTrade = isset($existingTradeMap[$trade['trade_id']]) ? $existingTradeMap[$trade['trade_id']] : null;
@@ -171,7 +171,7 @@ class TradingHistoryModel extends CI_Model
                     $updateTradingData[] = [
                         'id' => $existingTrade['id'],
                         'user_id' => $userId,
-                        'trading_account_id' => $trade['trading_account_id'],
+                        'account_id' => $trade['account_id'],
                         'trade_id' => $trade['trade_id'],
                         'trade_date' => $trade['trade_date'],
                         'close_date' => $trade['close_date'],
@@ -190,7 +190,7 @@ class TradingHistoryModel extends CI_Model
                     // Prepare trade data for insertion
                     $newTradingData[] = [
                         'user_id' => $userId,
-                        'trading_account_id' => $trade['trading_account_id'],
+                        'account_id' => $trade['account_id'],
                         'trade_id' => $trade['trade_id'],
                         'trade_date' => $trade['trade_date'],
                         'close_date' => $trade['close_date'],

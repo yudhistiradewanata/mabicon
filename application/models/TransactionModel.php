@@ -9,7 +9,9 @@ class TransactionModel extends CI_Model
         if (isset($filter['user_id']) && !empty($filter['user_id'])) {
             $this->db->where('user_id', $filter['user_id']);
         }
-
+        if (isset($filter['account_id']) && !empty($filter['account_id'])) {
+            $this->db->where('account_id', $filter['account_id']);
+        }
         if (isset($filter['user_ids']) && !empty($filter['user_ids'])) {
             $this->db->where_in('user_id', $filter['user_ids']);
         }
@@ -35,10 +37,11 @@ class TransactionModel extends CI_Model
     public function find($id){
         return $this->db->where('id',$id)->get($this->table)->row();
     }
-    public function insertDeposit($user_id, $amount, $description = '')
+    public function insertDeposit($user_id, $account_id, $amount, $description = '')
     {
         $data = [
             'user_id' => $user_id,
+            'account_id' => $account_id,
             'transaction_type' => 'deposit',
             'amount' => $amount,
             'transaction_date' => date('Y-m-d H:i:s'),
@@ -51,10 +54,11 @@ class TransactionModel extends CI_Model
         return $this->db->insert($this->table,$data);
     }
 
-    public function insertWithdrawal($user_id, $amount, $description = '')
+    public function insertWithdrawal($user_id, $account_id, $amount, $description = '')
     {
         $data = [
             'user_id' => $user_id,
+            'account_id' => $account_id,
             'transaction_type' => 'withdrawal',
             'amount' => $amount,
             'transaction_date' => date('Y-m-d H:i:s'),
@@ -67,10 +71,11 @@ class TransactionModel extends CI_Model
         return $this->db->insert($this->table,$data);
     }
 
-    public function insertTrade($user_id, $amount, $description = '')
+    public function insertTrade($user_id, $account_id, $amount, $description = '')
     {
         $data = [
             'user_id' => $user_id,
+            'account_id' => $account_id,
             'transaction_type' => 'trade',
             'amount' => $amount,
             'transaction_date' => date('Y-m-d H:i:s'),
@@ -84,11 +89,17 @@ class TransactionModel extends CI_Model
     }
     public function getTransactionSummary($userId, $startDate, $endDate)
     {
-        return $this->db->where('user_id', $userId)
-                    ->where('created_at >=', $startDate)
-                    ->where('created_at <=', $endDate)
-                    ->select('SUM(amount) as total_transactions, COUNT(id) as total_count')
-                    ->get($this->table)->row();
+        $pending_withdrawal=$this->db->select("sum(withdrawal_amount) pending_withdrawal")->where('user_id', $userId)->where('status','pending')->get('withdrawal_requests')->row()->pending_withdrawal;
+        $total_withdrawal=$this->db->select("sum(withdrawal_amount) total_withdrawal")->where('user_id', $userId)->where_in('status',['approved','transfered'])->get('withdrawal_requests')->row()->total_withdrawal;
+        $pending_deposit=$this->db->select("sum(topup_amount) pending_deposit")->where('user_id', $userId)->where('status','pending')->get('top_up_requests')->row()->pending_deposit;
+        $total_deposit=$this->db->select("sum(topup_amount) total_deposit")->where('user_id', $userId)->where('status','approved')->get('top_up_requests')->row()->total_deposit;
+
+        return (object)[
+            'pending_withdrawal'=>$pending_withdrawal,
+            'total_withdrawal'=>$total_withdrawal,
+            'pending_deposit'=>$pending_deposit,
+            'total_deposit'=>$total_deposit
+        ];
     }
 
 }
