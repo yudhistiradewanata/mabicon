@@ -59,20 +59,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Mabicon">
     <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-TileImage" content="https://finex.co.id/media/img/main-slider/hero-slide1.jpg">
     <meta name="msapplication-config" content="/meta-icons/browserconfig.xml">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Broker Forex terpercaya di Indonesia, terdaftar di BAPPEBTI. Trading Forex online: emas, mata uang, CFD. Spread rendah, komisi kecil, perlindungan saldo negatif.">
-    <meta property="og:url" content="https://finex.co.id/">
+    <meta property="og:url" content="https://mabicontech.com/">
     <meta property="og:site_name" content="Mabicon">
     <meta property="og:title" content="Mabicon">
-    <meta property="og:image" content="https://finex.co.id/media/img/main-slider/hero-slide1.jpg">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:type" content="website">
     <meta name="twitter:description" content="Broker Forex terpercaya di Indonesia, terdaftar di BAPPEBTI. Trading Forex online: emas, mata uang, CFD. Spread rendah, komisi kecil, perlindungan saldo negatif.">
-    <meta name="twitter:url" content="https://finex.co.id/">
     <meta name="twitter:title" content="Mabicon">
-    <meta name="twitter:image" content="https://finex.co.id/media/img/main-slider/hero-slide1.jpg">
     <link type="image/x-icon" href="<?=base_url('assets/landing/favicon.png')?>" rel="shortcut icon">
     
     <link href="<?=base_url('assets/landing/main_page.min.css')?>" rel="stylesheet"> 
@@ -84,7 +80,7 @@
     <header class="header js-header">
         <div class="header__inner">
             <div class="header__title">
-                <a class="header__logo" href="https://finex.co.id/" aria-label="To main page">
+                <a class="header__logo" href="https://mabicontech.com/" aria-label="To main page">
                     <img src="<?=base_url('assets/images/logo.webp')?>" width="137" height="32" alt="Mabicon logo">
                 </a>
                 
@@ -163,7 +159,7 @@
                 <div class="hero-banner__text">
                   <h1 class="hero-banner__title h1">MABICON </h1>
                   <b>CFD Premier Asia Trading Broker House</b>
-                  <p class="hero-banner__description hero-banner__description--min">Start trading with spreads as low as <b>0.1</b> pips.<br>Minimum deposit of only <b>$100.</b></p>
+                  <p class="hero-banner__description hero-banner__description--min">Start trading with spreads as low as <b>0.1</b> pips.<br>Minimum deposit of only <b>$10.</b></p>
                 </div>
                 <div class="hero-banner__buttons">
                   <a class="button button--primary button--lg" target="_blank" href="<?= site_url('member/auth/register')?>">
@@ -358,109 +354,7 @@
               <div class="content-wrapper__header">
                 <h2 class="content-wrapper__title h2">Account Types</h2>
               </div>
-              <div class="content-wrapper__content" style="padding:10px;display: flex;">
-                <article class="account-offer">
-                  <div class="account-offer__head">
-                    <h3 class="h4">
-                      <span class="account-offer__link">Cent (NANO)<span class="account-offer__link-icon">
-                          <svg width="24" height="24" aria-hidden="true">
-                            <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#chevron-right')?>"></use>
-                          </svg>
-                        </span>
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="account-offer__body">
-                    <dl class="account-offer__params">
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Deposit</dt>
-                        <dd class="account-offer__params-value">$100</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Stop Out Level</dt>
-                        <dd class="account-offer__params-value">20%</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Commission</dt>
-                        <dd class="account-offer__params-value">1$</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Leverage</dt>
-                        <dd class="account-offer__params-value">1:1000
-                          <button class="account-offer__params-icon js-tooltip" data-template-id="account-offer-tooltip" data-placement="bottom" aria-label="Leverage tooltip info" type="button" data-initialized="true" aria-expanded="false">
-                            <svg width="20" height="20" aria-hidden="true">
-                              <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#info')?>"></use>
-                            </svg>
-                          </button>
-                        </dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Trading Volume</dt>
-                        <dd class="account-offer__params-value">Mulai 0,01 lot</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Spread</dt>
-                        <dd class="account-offer__params-value">From 1.6</dd>
-                      </div>
-                    </dl>
-                  </div>
-                  <div class="account-offer__buttons">
-                    <a class="button button--primary button--lg" target="_blank" href="<?= site_url('member/auth/register')?>">
-                      <span class="button__content">Create Account</span>
-                    </a>
-                  </div>
-                </article>
-                <article class="account-offer">
-                  <div class="account-offer__head">
-                    <h3 class="h4">
-                      <span class="account-offer__link">Standard<span class="account-offer__link-icon">
-                          <svg width="24" height="24" aria-hidden="true">
-                            <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#chevron-right')?>"></use>
-                          </svg>
-                        </span>
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="account-offer__body">
-                    <dl class="account-offer__params">
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Deposit</dt>
-                        <dd class="account-offer__params-value">$100</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Stop Out Level</dt>
-                        <dd class="account-offer__params-value">20%</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Commission</dt>
-                        <dd class="account-offer__params-value">1$</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Leverage</dt>
-                        <dd class="account-offer__params-value">1:5000
-                          <button class="account-offer__params-icon js-tooltip" data-template-id="account-offer-tooltip" data-placement="bottom" aria-label="Leverage tooltip info" type="button" data-initialized="true" aria-expanded="false">
-                            <svg width="20" height="20" aria-hidden="true">
-                              <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#info')?>"></use>
-                            </svg>
-                          </button>
-                        </dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Trading Volume</dt>
-                        <dd class="account-offer__params-value">Mulai 0,01 lot</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Spread</dt>
-                        <dd class="account-offer__params-value">From 1.6</dd>
-                      </div>
-                    </dl>
-                  </div>
-                  <div class="account-offer__buttons">
-                    <a class="button button--primary button--lg" target="_blank" href="<?= site_url('member/auth/register')?>">
-                      <span class="button__content">Create Account</span>
-                    </a>
-                  </div>
-                </article>
+              <div class="content-wrapper__content" style="padding:10px;">
                 <article class="account-offer">
                   <div class="account-offer__head">
                     <h3 class="h4">
@@ -476,7 +370,7 @@
                     <dl class="account-offer__params">
                       <div class="account-offer__params-item">
                         <dt class="account-offer__params-title">Min. Deposit</dt>
-                        <dd class="account-offer__params-value">$500</dd>
+                        <dd class="account-offer__params-value">$10</dd>
                       </div>
                       <div class="account-offer__params-item">
                         <dt class="account-offer__params-title">Stop Out Level</dt>
@@ -512,58 +406,6 @@
                     </a>
                   </div>
                 </article>
-                <article class="account-offer">
-                  <div class="account-offer__head">
-                    <h3 class="h4">
-                      <span class="account-offer__link">ECN PRO<span class="account-offer__link-icon">
-                          <svg width="24" height="24" aria-hidden="true">
-                            <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#chevron-right')?>"></use>
-                          </svg>
-                        </span>
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="account-offer__body">
-                    <dl class="account-offer__params">
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Deposit</dt>
-                        <dd class="account-offer__params-value">$1000</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Stop Out Level</dt>
-                        <dd class="account-offer__params-value">20%</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Commission</dt>
-                        <dd class="account-offer__params-value">1$</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Leverage</dt>
-                        <dd class="account-offer__params-value">1:1000
-                          <button class="account-offer__params-icon js-tooltip" data-template-id="account-offer-tooltip" data-placement="bottom" aria-label="Leverage tooltip info" type="button" data-initialized="true" aria-expanded="false">
-                            <svg width="20" height="20" aria-hidden="true">
-                              <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#info')?>"></use>
-                            </svg>
-                          </button>
-                        </dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Min. Trading Volume</dt>
-                        <dd class="account-offer__params-value">Mulai 0,01 lot</dd>
-                      </div>
-                      <div class="account-offer__params-item">
-                        <dt class="account-offer__params-title">Spread</dt>
-                        <dd class="account-offer__params-value">From 1.6</dd>
-                      </div>
-                    </dl>
-                  </div>
-                  <div class="account-offer__buttons">
-                    <a class="button button--primary button--lg" target="_blank" href="<?= site_url('member/auth/register')?>">
-                      <span class="button__content">Create Account</span>
-                    </a>
-                  </div>
-                </article>
-
               </div>
             </section>
           </div>
@@ -573,8 +415,8 @@
               <div class="section__header">
                 <h2 class="h2">Trading Instrument </h2>
                 <div class="grid-sm">
-                  <p>78 trading instruments available with low spreads and fast order execution </p>
-                  <a class="link link--icon" href="https://finex.co.id/trading/instruments">
+                  <p>Thousands of trading instruments available with low spreads and fast order execution </p>
+                  <a class="link link--icon" href="#">
                     <span class="link__text">Learn more about instruments</span>
                     <span class="link__icon">
                         <svg width="20" height="20" aria-hidden="true">
@@ -1286,24 +1128,14 @@
                             </p>
                           </div>
                           <ul class="app-banner__links ">
-                            <li class="app-banner__link app-banner__link--ios ">
-                              <a class="app-button app-button--dark app-button--appstore js-apple-link" target="_blank" href="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.pkg.zip" aria-label="Download on the App Store">
+                            <li class="app-banner__link app-banner__link--web ">
+                              <a class="app-button app-button--dark app-button--appstore js-apple-link" target="_blank" href="https://apps.apple.com/us/app/metatrader-5/id413251709" aria-label="Download on the App Store">
                                 <img class="app-button__icon " src="<?=base_url('assets/landing/app-store.svg')?>" width="148" height="44" alt="App Store" loading="lazy">
                               </a>
                             </li>
                             <li class="app-banner__link ">
-                              <a class="app-button app-button--dark app-button--googleplay" target="_blank" href="https://download.mql5.com/cdn/mobile/mt5/android?server=MabiconBisnisSolusi-Real" aria-label="Get it on Google Play">
+                              <a class="app-button app-button--dark app-button--googleplay" target="_blank" href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5" aria-label="Get it on Google Play">
                                 <img class="app-button__icon" src="<?=base_url('assets/landing/google-play.svg')?>" width="148" height="44" alt="Google Play" loading="lazy">
-                              </a>
-                            </li>
-                            <li class="app-banner__link hidden--md-max">
-                              <a class="app-button app-button--dark" target="_blank" href="https://download.mql5.com/cdn/web/22020/mt5/finexbisnissolusi5setup.exe" aria-label="Get it from Microsoft Store">
-                                <img class="app-button__icon" src="<?=base_url('assets/landing/microsoft-store.svg')?>" width="148" height="44" alt="Microsoft Store" loading="lazy">
-                              </a>
-                            </li>
-                            <li class="app-banner__link app-banner__link--web">
-                              <a class="app-button app-button--dark" target="_blank" href="https://real-terminal.finex.co.id/terminal" aria-label="Trade directly in browser">
-                                <img class="app-button__icon " src="<?=base_url('assets/landing/web.svg')?>" width="148" height="44" alt="web platform">
                               </a>
                             </li>
                           </ul>
@@ -1365,12 +1197,12 @@
                       <address class="contacts__cards">
                         <p class="contacts__card">
                           <span class="contacts__card-title">WhatsApp dukungan</span>
-                          <a class="link" href="https://wa.me/+62..." target="_blank">
-                            +62...</a>
+                          <a class="link" href="https://wa.me/+60177855190" target="_blank">
+                            +60177855190</a>
                         </p>
                         <p class="contacts__card">
                           <span class="contacts__card-title">Email</span>
-                          <a class="link" href="mailto:customer.service@mabicontech.com">customer.service @mabicontech.com</a>
+                          <a class="link" href="mailto:cs@mabicontech.com">cs @mabicontech.com</a>
                         </p>
                       </address>
                     </section>
@@ -1478,31 +1310,15 @@
             <div class="footer__content">
                 <div class="footer__header">
                     <div class="footer__contacts">
-                        <a href="https://wa.me/+62..." class="footer__tel" target="_blank">
-                            +62...                    </a>
+                        <a href="https://wa.me/+60177855190" class="footer__tel" target="_blank">
+                            +60177855190                    </a>
 
                         <p class="footer__paragraph">
                             Layanan Nasabah                    </p>
                     </div>
 
                     <div class="footer__socials">
-                        <a class="footer__social-link" href="https://www.instagram.com/finex_forex/" rel="nofollow" target="_blank" aria-label="instagram">
-                            <svg class="footer__social-icon" width="16" height="16">
-                                <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#ig')?>"></use>
-                            </svg>
-                        </a>
-
-                        <a class="footer__social-link" href="https://www.facebook.com/finexbroker" rel="nofollow" target="_blank" aria-label="facebook">
-                            <svg class="footer__social-icon" width="16" height="16">
-                                <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#fb')?>"></use>
-                            </svg>
-                        </a>
-
-                        <a class="footer__social-link" href="https://www.youtube.com/channel/UC-l61LxjsphAAjnoQwGTV6Q" rel="nofollow" target="_blank" aria-label="youtube">
-                            <svg class="footer__social-icon" width="16" height="16">
-                                <use xlink:href="<?=base_url('assets/landing/media/svg/sprites.svg#yt')?>"></use>
-                            </svg>
-                        </a>
+                        
                     </div>
                 </div>
             </div>
@@ -1541,12 +1357,7 @@
 
                         <div class="footer__nav-content js-accordion-content">
                             <div class="footer__nav-inner">
-                                <a class="footer__nav-link" href="https://finex.co.id/about/who-we-are">
-                                    Siapa Kami                            </a>
-                                <a class="footer__nav-link" href="https://finex.co.id/about/documents">
-                                    Dokumen                            </a>
-                                <a class="footer__nav-link" href="https://finex.co.id/about/contacts">
-                                    Kontak                            </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -1585,9 +1396,9 @@
                     <p class="footer__paragraph">Customer Support:</p>
 
                     <div class="footer__feedback-links">
-                        <a class="footer__feedback-link" href="https://wa.me/+628118780038" target="_blank">+62...</a>
+                        <a class="footer__feedback-link" href="https://wa.me/+601778551908780038" target="_blank">+60177855190</a>
 
-                        <a class="footer__feedback-link" href="mailto:customer.service@mabicontech.com" target="_blank">customer.service@mabicontech.com</a>
+                        <a class="footer__feedback-link" href="mailto:cs@mabicontech.com" target="_blank">cs@mabicontech.com</a>
 
                     </div>
                 </div>
@@ -1602,7 +1413,7 @@
     </footer>
   </div>
   <div class="whatsapp-button">
-    <a href="https://wa.me/+62123" target="_blank">
+    <a href="https://wa.me/+60177855190" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
   </div>
