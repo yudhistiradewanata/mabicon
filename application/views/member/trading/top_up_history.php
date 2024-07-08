@@ -53,6 +53,7 @@
                         <div class="mb-3 col-md-6">
                             <label for="account_id" class="form-label">Trading Account</label>
                             <select class="form-control" id="account_id" name="account_id" required>
+                                <option value="">- Choose Your Trading Account --</option>
                                 <?php foreach($tradingAccounts as $account): ?>
                                     <option value="<?= $account->account_id ?>"><?= $account->account_id ?></option>
                                 <?php endforeach; ?>
@@ -72,7 +73,7 @@
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="transfer_destination" class="form-label">Transfer Destination</label>
-                            <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="usdt_address">
+                            <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

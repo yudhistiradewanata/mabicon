@@ -66,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?=site_url('member/auth/logout')?>" class="nav-link">
-                        <i class="ri-newspaper-line"></i> <span>Log Out</span>
+                        <i class="ri-lock"></i> <span>Log Out</span>
                     </a>
                 </li>
             </ul>
