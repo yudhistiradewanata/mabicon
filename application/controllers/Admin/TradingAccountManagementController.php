@@ -29,6 +29,7 @@ class TradingAccountManagementController extends MY_Controller
             $this->email->to($user->email);
             $this->email->subject('Trading Account Request Approved');
             $this->email->message('Your Trading Account Request have been approved.<br>Login ID: ' . $account_id."<br>Login Password: ".$password."<br><br>DO NOT SHARE THIS CREDENTIAL WITH ANYONE ELSE!");
+            $this->email->send(false);
 
             $this->session->set_flashdata('success', 'Trading account approved successfully.');
         } else {
