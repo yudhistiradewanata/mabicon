@@ -19,9 +19,11 @@ class DashboardController extends MY_Controller
         } elseif ($kycStatus[0]->status == 'approved') {
             if (!$this->session->has_userdata('kyc_approved')) {
                 $this->session->set_userdata('kyc_approved', true);
-                $this->session->set_flashdata('success', 'Your KYC has been approved.');
+
             }
+            $this->session->set_flashdata('success', 'Your KYC has been approved.');
         }
+        // echo "A";exit;
 
         $dateChoice = $this->input->post('date_choice');
         // pre($dateChoice);
