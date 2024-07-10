@@ -6,7 +6,6 @@
                 <p class="text-muted mb-0">Here's what's happening with your account today.</p>
             </div>
             <div class="mt-3 mt-lg-0">
-                <?=showFlashData()?>
                 <?=form_open('member/dashboard')?>
                     <div class="row g-3 mb-0 align-items-center">
                         <div class="col-sm-auto">
