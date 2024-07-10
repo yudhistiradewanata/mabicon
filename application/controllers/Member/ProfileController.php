@@ -9,6 +9,16 @@ class ProfileController extends MY_Controller
     public function changePassword(){
         $this->edit('changePassword');
     }
+    public function mydownline(){
+        $userId = $this->session->userdata('user_id');
+        $downlines = $this->userModel->getDownlines($userId);
+        $data = [
+            'downlines'=>$downlines
+        ];
+
+        $content = $this->load->view('member/profile/my_downlines', $data, true);
+        $this->load->view('member/layout/master', ['content' => $content, 'title' => 'My Downlines']);
+    }
     public function edit($activeTab='personalDetails')
     {
         $userId = $this->session->userdata('user_id');

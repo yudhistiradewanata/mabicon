@@ -141,4 +141,48 @@ class UserModel extends CI_Model
     {
         return $this->db->where('email', $email)->count_all_results($this->table) > 0;
     }
+    public function getDownlines($userId, $startDate='',$endDate=''){
+        $downlines=$this->db->select("u.id,u.username,u.full_name,u.phone_number,u.email,ifnull(k.status,'not done') kyc_status")->from("users u")->join("kyc k","u.id=k.user_id","left")->where("u.referral_id",$userId)->where('u.status','active')->get()->result();
+        $downlineIds=[];
+        foreach($downlines as $row){
+            $row->pending_topup=0;
+            $row->approved_topup=0;
+            $row->pending_withdrawal=0;
+            $row->approved_withdrawal=0;
+            $downlineIds[]=$row->id;
+        }
+        $this->db->select("user_id,sum((case when status='pending' then topup_amount else 0 end)) pending_topup,sum((case when status='approved' then topup_amount else 0 end)) approved_topup")->from("top_up_requests")->where_in("user_id",$downlineIds);
+        if(!empty($startDate)){
+            $this->db->where("date(created_at)>=",$startDate);
+        }
+        if(!empty($endDate)){
+            $this->db->where("date(created_at)<=",$endDate);
+        }
+        $topups=$this->db->group_by("user_id")->get()->result();
+        $this->db->select("user_id,sum((case when status='pending' then withdrawal_amount else 0 end)) pending_withdrawal,sum((case when status='approved' then withdrawal_amount else 0 end)) approved_withdrawal")->from("withdrawal_requests")->where_in("user_id",$downlineIds);
+        if(!empty($startDate)){
+            $this->db->where("date(created_at)>=",$startDate);
+        }
+        if(!empty($endDate)){
+            $this->db->where("date(created_at)<=",$endDate);
+        }
+        $withdrawals=$this->db->group_by("user_id")->get()->result();
+        foreach($downlines as $row){
+            foreach($topups as $row2){
+                if($row->id==$row2->user_id){
+                    $row->pending_topup=$row2->pending_topup;
+                    $row->approved_topup=$row2->approved_topup;
+                    break;
+                }
+            }
+            foreach($withdrawals as $row2){
+                if($row->id==$row2->user_id){
+                    $row->pending_withdrawal=$row2->pending_withdrawal;
+                    $row->approved_withdrawal=$row2->approved_withdrawal;
+                    break;
+                }
+            }
+        }
+        return $downlines;
+    }
 }

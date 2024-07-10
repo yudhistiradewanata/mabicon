@@ -125,7 +125,7 @@
     <div class="card-header">
         <div class="row align-items-center g-3">
             <div class="col-md-3">
-                <h5 class="card-title mb-0">Trade Histories</h5>
+                <h5 class="card-title mb-0">My Downlines</h5>
             </div>
             <!--end col-->
             <div class="col-md-auto ms-auto">
@@ -147,70 +147,32 @@
             <table class="table align-middle table-nowrap" id="main-dt">
                 <thead class="table-light text-muted">
                     <tr>
-                        <th class="sort" data-sort="name" scope="col" style="width: 60px;"></th>
-                        <th class="sort" data-sort="trade_date" scope="col">Date</th>
-                        <th class="sort" data-sort="asset" scope="col">Asset</th>
-                        <th class="sort" data-sort="order" scope="col">Order</th>
-                        <th class="sort" data-sort="trade_status" scope="col">Status</th>
-                        <th class="sort" data-sort="margin" scope="col">Margin</th>
-                        <th class="sort" data-sort="lot" scope="col">Lot</th>
-                        <th class="sort" data-sort="open_price" scope="col">Open</th>
-                        <th class="sort" data-sort="close_price" scope="col">Close</th>
-                        <th class="sort" data-sort="pnl" scope="col">PnL</th>
-                        <th class="sort" data-sort="rebate" scope="col">Rebate</th>
+                        <th class="sort" scope="col" style="width: 60px;"></th>
+                        <th class="sort" scope="col">Username</th>
+                        <th class="sort" scope="col">Name</th>
+                        <th class="sort" scope="col">Phone</th>
+                        <th class="sort" scope="col">Email</th>
+                        <th class="sort" scope="col">KYC</th>
+                        <th class="sort" scope="col">Pending Topup</th>
+                        <th class="sort" scope="col">Approved Topup</th>
+                        <th class="sort" scope="col">Pending WD</th>
+                        <th class="sort" scope="col">Approved WD</th>
                     </tr>
                     <!--end tr-->
                 </thead>
                 <tbody class="list form-check-all">
-                    <?php foreach($trades as $row){?>
+                    <?php foreach($downlines as $i=>$row){?>
                         <tr>
-                            <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a></td>
-                            <td>
-                                <?php if($row->trade_status=='closed'){?>
-                                    <?php if($row->pnl<0){?>
-                                    <div class="avatar-xs">
-                                        <div class="avatar-title bg-danger-subtle text-danger rounded-circle fs-16">
-                                            <i class="ri-arrow-right-down-fill"></i>
-                                        </div>
-                                    </div>
-                                    <?php }else{ ?>
-                                    <div class="avatar-xs">
-                                        <div class="avatar-title bg-success-subtle text-success rounded-circle fs-16">
-                                            <i class="ri-arrow-right-up-fill"></i>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                <?php } ?>
-                            </td>
-                            <td class="trade_date"><?=dmy($row->trade_date)?> <small class="text-muted"><?=his($row->trade_date)?></small></td>
-                            <td class="asset">
-                                <div class="d-flex align-items-center">
-                                    <?=strtoupper($row->asset)?>
-                                </div>
-                            </td>
-                            <td class="order"><?=strtoupper($row->order)?></td>
-                            <td class="trade_status">
-                                <?php if($row->trade_status=='open'){?>
-                                    <span class="badge bg-warning-subtle text-warning fs-11"><i class="ri-time-line align-bottom"></i> Open</span>
-                                <?php }else{ ?>
-                                    <span class="badge bg-success-subtle text-success fs-11"><i class="ri-time-line align-bottom"></i> Closed</span>
-                                <?php } ?>
-                                    
-                            </td>
-                            <td class="margin"><h6 class="mb-1 amount"><?=number_format($row->margin,2)?> USD</h6></td>
-                            <td class="lot"><h6 class="mb-1 amount"><?=number_format($row->lot,3)?></h6></td>
-                            <td class="open_price"><h6 class="mb-1 amount"><?=number_format($row->open_price,3)?> USD</h6></td>
-                            <td class="close_price"><h6 class="mb-1 amount"><?=number_format($row->close_price,3)?> USD</h6></td>
-                            <td class="pnl">
-                                <?php if($row->pnl<0){?>
-                                    <h6 class="text-danger mb-1 amount"><?=number_format($row->pnl,2)?> USD</h6>
-                                <?php }else{ ?>
-                                    <h6 class="text-success mb-1 amount"><?=number_format($row->pnl,2)?> USD</h6>
-                                <?php } ?>
-                            </td>
-                            
-                            <td class="rebate"><h6 class="mb-1 amount"><?=number_format($row->rebate,3)?> USD</h6></td>
-                            
+                            <td><?=($i+1)?></td>
+                            <td><?=$row->username?></td>
+                            <td><?=$row->full_name?></td>
+                            <td><?=$row->phone_number?></td>
+                            <td><?=$row->email?></td>
+                            <td><?=ucwords($row->kyc_status)?></td>
+                            <td><h6 class="mb-1 amount"><?=number_format($row->pending_topup,2)?> USD</h6></td>
+                            <td><h6 class="mb-1 amount"><?=number_format($row->approved_topup,2)?> USD</h6></td>
+                            <td><h6 class="mb-1 amount"><?=number_format($row->pending_withdrawal,2)?> USD</h6></td>
+                            <td><h6 class="mb-1 amount"><?=number_format($row->approved_withdrawal,2)?> USD</h6></td>
                         </tr>
                     <?php } ?>
                     

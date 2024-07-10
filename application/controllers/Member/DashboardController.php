@@ -35,6 +35,7 @@ class DashboardController extends MY_Controller
         $transactionSummary = $this->transactionModel->getTransactionSummary($userId, $startDate, $endDate);
         $bonusSummary = $this->userBonusModel->getBonusSummary($userId, $startDate, $endDate);
         $announcements = $this->announcementModel->getAnnouncements();
+        $downlines = $this->userModel->getDownlines($userId,$startDate,$endDate);
         $trades=$this->db->where("date(trade_date)>=",$startDate)->where("date(trade_date)<=",$endDate)->where("user_id",$userId)->order_by("trade_date desc")->get('trading_histories')->result();
         $transactions=$this->db->where("date(transaction_date)>=",$startDate)->where("date(transaction_date)<=",$endDate)->where("user_id",$userId)->where_in("transaction_type",['deposit','withdrawal'])->order_by("transaction_date desc")->get('transactions')->result();
 
@@ -49,6 +50,7 @@ class DashboardController extends MY_Controller
             'announcements' => $announcements,
             'trades'=>$trades,
             'transactions'=>$transactions,
+            'downlines'=>$downlines,
             'kycStatus' => $kycStatus[0]->status ?? 'not_submitted',
             'hidePageTitle'=>true
         ];

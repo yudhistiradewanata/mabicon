@@ -45,6 +45,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?=site_url('member/profile/mydownline')?>" class="nav-link">
+                        <i class="ri-user-fill"></i> <span>My Downline</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
                     <a href="<?=site_url('member/topup')?>" class="nav-link">
                         <i class="ri-coins-fill"></i> <span>Deposit</span>
                     </a>
@@ -64,11 +70,7 @@
                         <i class="ri-newspaper-line"></i> <span>News</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?=site_url('member/auth/logout')?>" class="nav-link">
-                        <i class="ri-lock"></i> <span>Log Out</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
         <!-- Sidebar -->
