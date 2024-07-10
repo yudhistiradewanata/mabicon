@@ -71,8 +71,8 @@
                             <label for="transfer_proof_file" class="form-label">Transfer Proof File</label>
                             <input type="file" class="form-control" id="transfer_proof_file" name="transfer_proof_file" required>
                         </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="transfer_destination" class="form-label">Transfer Destination</label>
+                        <div class="mb-3 col-md-12">
+                            <label for="transfer_destination" class="form-label">Transfer TO</label>
                             <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">
                         </div>
                     </div>

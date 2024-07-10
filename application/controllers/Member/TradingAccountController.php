@@ -27,7 +27,7 @@ class TradingAccountController extends MY_Controller
         $userId = $this->session->userdata('user_id');
         $data = [
             'user_id' => $userId,
-            'account_id' => $this->input->post('account_id') ?: null,
+            'account_id' => null,
             'requested_at' => date('Y-m-d H:i:s'),
             'status' => 'pending'
         ];
@@ -38,5 +38,25 @@ class TradingAccountController extends MY_Controller
             $this->session->set_flashdata('error', 'Failed to submit trading account request.');
         }
         redirect('member/tradingaccount');
+    }
+    public function verifyPassword()
+    {
+        $user_id = $this->session->userdata('user_id');
+        $account_id = $this->input->post('account_id');
+        $user_password = $this->input->post('user_password');
+
+        $user = $this->userModel->find($user_id);
+
+        if (password_verify($user_password, $user->password_hash)) {
+            $tradingAccount = $this->tradingAccountModel->find($account_id);
+
+            if ($tradingAccount && $tradingAccount->user_id == $user_id) {
+                echo json_encode(['status' => 'success', 'trading_account_password' => $tradingAccount->password]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Invalid trading account.']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid user password.']);
+        }
     }
 }

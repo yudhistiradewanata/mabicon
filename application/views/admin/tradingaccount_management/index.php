@@ -71,12 +71,17 @@
                         <label for="account_id" class="form-label">Trading Account ID</label>
                         <input type="text" class="form-control" id="account_id" name="account_id">
                     </div>
+                    <div class="col-md-6">
+                        <label for="account_id" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="account_password" name="password">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 approve-section">
                         <?= form_open('admin/trading-account-management/approve', ['id' => 'approveForm', 'class' => 'd-inline']) ?>
                             <input type="hidden" id="approve_id" name="id">
                             <input type="hidden" id="approve_account_id" name="account_id">
+                            <input type="hidden" id="approve_password" name="password">
                             <button type="submit" class="btn btn-primary">Approve</button>
                         <?= form_close() ?>
                     </div>
@@ -101,6 +106,7 @@
         $('#modal_username').val(username);
         $('#modal_requested_at').val(requested_at);
         $('#approve_id').val(id);
+        
         $('#reject_id').val(id);
         if (action === 'approve') {
             $('.approve-section').show();
@@ -116,5 +122,7 @@
 
     $('#approveForm').submit(function(e) {
         $('#approve_account_id').val($('#account_id').val());
+        $('#approve_password').val($('#account_password').val());
+        
     });
 </script>

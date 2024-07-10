@@ -62,7 +62,7 @@
               <input type="number" step="0.01" class="form-control" id="withdrawal_amount" name="withdrawal_amount" required>
             </div>
             <div class="mb-3 col-md-6">
-              <label for="usdt_address" class="form-label">USDT Address</label>
+              <label for="usdt_address" class="form-label">Withdraw to USDT Address</label>
               <select class="form-select" id="usdt_address" name="usdt_address" required>
                 <?php foreach($usdtAddresses as $row){?>
                     <option value="<?=$row->usdt_address?>"><?=$row->usdt_address?></option>

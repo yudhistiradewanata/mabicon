@@ -19,7 +19,9 @@ class TradingAccountManagementController extends MY_Controller
     {
         $id = $this->input->post('id');
         $account_id = $this->input->post('account_id');
-        if ($this->tradingAccountModel->approve($id, $account_id)) {
+        $password = $this->input->post('password');
+
+        if ($this->tradingAccountModel->approve($id, $account_id,$password)) {
             $this->session->set_flashdata('success', 'Trading account approved successfully.');
         } else {
             $this->session->set_flashdata('error', 'Failed to approve trading account.');
