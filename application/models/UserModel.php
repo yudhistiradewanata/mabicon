@@ -151,35 +151,37 @@ class UserModel extends CI_Model
             $row->approved_withdrawal=0;
             $downlineIds[]=$row->id;
         }
-        $this->db->select("user_id,sum((case when status='pending' then topup_amount else 0 end)) pending_topup,sum((case when status='approved' then topup_amount else 0 end)) approved_topup")->from("top_up_requests")->where_in("user_id",$downlineIds);
-        if(!empty($startDate)){
-            $this->db->where("date(created_at)>=",$startDate);
-        }
-        if(!empty($endDate)){
-            $this->db->where("date(created_at)<=",$endDate);
-        }
-        $topups=$this->db->group_by("user_id")->get()->result();
-        $this->db->select("user_id,sum((case when status='pending' then withdrawal_amount else 0 end)) pending_withdrawal,sum((case when status='approved' then withdrawal_amount else 0 end)) approved_withdrawal")->from("withdrawal_requests")->where_in("user_id",$downlineIds);
-        if(!empty($startDate)){
-            $this->db->where("date(created_at)>=",$startDate);
-        }
-        if(!empty($endDate)){
-            $this->db->where("date(created_at)<=",$endDate);
-        }
-        $withdrawals=$this->db->group_by("user_id")->get()->result();
-        foreach($downlines as $row){
-            foreach($topups as $row2){
-                if($row->id==$row2->user_id){
-                    $row->pending_topup=$row2->pending_topup;
-                    $row->approved_topup=$row2->approved_topup;
-                    break;
-                }
+        if(!empty($downlineIds)){
+            $this->db->select("user_id,sum((case when status='pending' then topup_amount else 0 end)) pending_topup,sum((case when status='approved' then topup_amount else 0 end)) approved_topup")->from("top_up_requests")->where_in("user_id",$downlineIds);
+            if(!empty($startDate)){
+                $this->db->where("date(created_at)>=",$startDate);
             }
-            foreach($withdrawals as $row2){
-                if($row->id==$row2->user_id){
-                    $row->pending_withdrawal=$row2->pending_withdrawal;
-                    $row->approved_withdrawal=$row2->approved_withdrawal;
-                    break;
+            if(!empty($endDate)){
+                $this->db->where("date(created_at)<=",$endDate);
+            }
+            $topups=$this->db->group_by("user_id")->get()->result();
+            $this->db->select("user_id,sum((case when status='pending' then withdrawal_amount else 0 end)) pending_withdrawal,sum((case when status='approved' then withdrawal_amount else 0 end)) approved_withdrawal")->from("withdrawal_requests")->where_in("user_id",$downlineIds);
+            if(!empty($startDate)){
+                $this->db->where("date(created_at)>=",$startDate);
+            }
+            if(!empty($endDate)){
+                $this->db->where("date(created_at)<=",$endDate);
+            }
+            $withdrawals=$this->db->group_by("user_id")->get()->result();
+            foreach($downlines as $row){
+                foreach($topups as $row2){
+                    if($row->id==$row2->user_id){
+                        $row->pending_topup=$row2->pending_topup;
+                        $row->approved_topup=$row2->approved_topup;
+                        break;
+                    }
+                }
+                foreach($withdrawals as $row2){
+                    if($row->id==$row2->user_id){
+                        $row->pending_withdrawal=$row2->pending_withdrawal;
+                        $row->approved_withdrawal=$row2->approved_withdrawal;
+                        break;
+                    }
                 }
             }
         }
