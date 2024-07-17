@@ -75,6 +75,10 @@
                             <label for="transfer_destination" class="form-label">Transfer TO</label>
                             <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">
                         </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="transfer_destination" class="form-label">OR Transfer TO</label>
+                            <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="ABSA BANK - ROSE BANK | 41-1126-6763 | MABICON (PTY) LTD">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 <?=form_close()?>
