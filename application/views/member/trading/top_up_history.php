@@ -80,6 +80,7 @@
                             <textarea class="form-control" id="transfer_destination" name="transfer_destination" readonly rows="7">Account Name: MABICON (PTY) LTD
 Registration Number: 2022/562779/07
 Account Number: 41-1126-6763
+Account Type: CURRENT ACCOUNT
 Bank: ABSA BANK - ROSE BANK
 Branch Code: 632005
 Absa Swift Code: ABSAZAJJ
