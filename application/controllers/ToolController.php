@@ -5,7 +5,7 @@ class ToolController extends MY_Controller
     public function sendemail(){
         
         $emailConfig=$this->config->item('email');
-
+        $this->email->initialize($emailConfig);
         $this->email->from($emailConfig['smtp_user'], 'Mabicon');
         $this->email->to("yudhistiradewanata@gmail.com");
         $this->email->subject('Account Verification');

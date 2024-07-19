@@ -77,7 +77,13 @@
                         </div>
                         <div class="mb-3 col-md-12">
                             <label for="transfer_destination" class="form-label">OR Transfer TO</label>
-                            <input type="text" class="form-control" id="transfer_destination" name="transfer_destination" readonly value="ABSA BANK - ROSE BANK | 41-1126-6763 | MABICON (PTY) LTD">
+                            <textarea class="form-control" id="transfer_destination" name="transfer_destination" readonly rows="7">Account Name: MABICON (PTY) LTD
+Registration Number: 2022/562779/07
+Account Number: 41-1126-6763
+Bank: ABSA BANK - ROSE BANK
+Branch Code: 632005
+Absa Swift Code: ABSAZAJJ
+Status: ACTIVE</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
