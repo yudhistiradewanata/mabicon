@@ -84,6 +84,7 @@ Account Type: CURRENT ACCOUNT
 Bank: ABSA BANK - ROSE BANK
 Branch Code: 632005
 Absa Swift Code: ABSAZAJJ
+Address: 7th Floor, Absa Towers West. 15 Troye Street, Johannesburg, 2001
 Status: ACTIVE</textarea>
                         </div>
                     </div>
