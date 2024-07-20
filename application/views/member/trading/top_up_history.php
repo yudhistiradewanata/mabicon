@@ -77,7 +77,7 @@
                         </div>
                         <div class="mb-3 col-md-12">
                             <label for="transfer_destination" class="form-label">OR Transfer TO</label>
-                            <textarea class="form-control" id="transfer_destination" name="transfer_destination" readonly rows="8">Account Name: MABICON (PTY) LTD
+                            <textarea class="form-control" id="transfer_destination" name="transfer_destination" readonly rows="10">Account Name: MABICON (PTY) LTD
 Registration Number: 2022/562779/07
 Account Number: 41-1126-6763
 Account Type: CURRENT ACCOUNT
