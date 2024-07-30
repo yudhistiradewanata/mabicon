@@ -92,7 +92,7 @@
                             <a class="header__nav-link" href="#home-section">Home</a>
                         </li>
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="#why-us-section">Tentang Kami</a>
+                            <a class="header__nav-link" href="#why-us-section">About Us</a>
                         </li>
                         <li class="header__nav-item">
                             <a class="header__nav-link" href="#instrument-section">Instrument</a>
@@ -101,19 +101,19 @@
                             <a class="header__nav-link" href="#platform-section">Platform</a>
                         </li>
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="#account-section">Jenis Akun</a>
+                            <a class="header__nav-link" href="#account-section">Account Type</a>
                         </li>
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="#contact-section">Hubungi Kami</a>
+                            <a class="header__nav-link" href="#contact-section">Contact Us</a>
                         </li>
                     </ul>
                 </nav>
                 <div class="header__menu-buttons hidden--lg">
                     <a class="button button--secondary button--lg button--wide" href="<?=site_url('member/auth/login')?>" target="_blank">
-                        <span class="button__content">Masuk</span>
+                        <span class="button__content">Sign In</span>
                     </a>
                     <a class="button button--primary button--lg button--wide" href="<?= site_url('member/auth/register')?>" target="_blank">
-                        <span class="button__content">Buka Akun</span>
+                        <span class="button__content">Create Account</span>
                     </a>
                 </div>
                 <div class="header__social hidden--lg">
@@ -127,11 +127,11 @@
                 <div class="header__buttons">
                     <a class="button button--secondary button--sm hidden--sm-only" href="<?=site_url('member/auth/login')?>" target="_blank">
                         <span class="button__content">
-                          Masuk                    </span>
+                          Sign In                    </span>
                     </a>
                     <a class="button button--primary button--sm" href="<?= site_url('member/auth/register')?>" target="_blank">
                         <span class="button__content">
-                          Buka Akun                    </span>
+                          Create Account                    </span>
                     </a>
                 </div>
                 <button class="header__toggle hidden--lg js-header-toggle" aria-label="Toggle header menu" type="button">
