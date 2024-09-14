@@ -152,5 +152,6 @@ $autoload['model'] = array(
     'TierModel' => 'tierModel',
     'RebateBonusConfigModel' => 'rebateBonusConfigModel',
     'WelcomeBonusConfigModel' => 'welcomeBonusConfigModel',
-    'TradingAccountModel' => 'tradingAccountModel'
+    'TradingAccountModel' => 'tradingAccountModel',
+    'USDTAddressModel'=>'usdtAddressModel'
 );

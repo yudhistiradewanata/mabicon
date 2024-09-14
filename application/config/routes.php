@@ -97,6 +97,7 @@ $route['member/trading/(:any)'] = 'Member/TradingController/$1';
 $route['member/tradingaccount/(:any)'] = 'Member/TradingAccountController/$1';
 $route['member/account/(:any)'] = 'Member/AccountController/$1';
 $route['member/profile/(:any)'] = 'Member/ProfileController/$1';
+$route['member/profile/(:any)/(:any)'] = 'Member/ProfileController/$1/$2';
 $route['member/support/(:any)'] = 'Member/SupportController/$1';
 $route['member/news/(:any)'] = 'Member/NewsController/$1';
 $route['member/bonus/(:any)'] = 'Member/BonusController/$1';

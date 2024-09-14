@@ -133,12 +133,14 @@
                         <?php } ?>
                     </div>
                     <div class="tab-pane <?=($activeTab=='usdtAddresses')?'active':''?>" id="usdtAddresses" role="tabpanel">
-                        <a href="<?=site_url('member/profile/createUsdtAddress')?>" class="btn btn-primary"><i class="fa fa-plus"></i> New USDT Address</a>
+                        <button type="button" onclick="newUsdtAddress()" class="btn btn-primary"><i class="fa fa-plus"></i> New USDT Address</button>
                         <table id="usdt-dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%;margin-top: 20px;">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
+                                    
                                     <th scope="col">Date</th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Address</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -147,7 +149,9 @@
                                 <?php foreach($usdtAddresses as $i=>$row){?>
                                 <tr>
                                     <td><?=($i+1)?></td>
+                                    
                                     <td><?=dmy($row->created_at)?></td>
+                                    <td><?=$row->title?></td>
                                     <td><?=$row->usdt_address?></td>
                                     <td>
                                         <?php if($row->is_default){?>
@@ -201,3 +205,46 @@
     <!--end col-->
 </div>
 <!--end row-->
+<!-- Modal -->
+<div class="modal fade" id="addUsdtModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUsdtModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kycModalLabel">Add New USDT Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-5">
+                <?= form_open('member/profile/addUsdtAddress', ['id' => 'addUsdtForm', 'class' => 'd-inline']) ?>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Default Address</label>
+                        <select class="form-select" name="is_default" id="is_default" required>
+                            <option value="">-- PLEASE SELECT --</option>
+                            <option value="1">YES</option>
+                            <option value="0">NO</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="usdt-address" class="form-label">USDT Address</label>
+                        <input type="text" class="form-control" name="usdt_address" id="usdt-address">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">    
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function newUsdtAddress(){
+        $("#addUsdtModal").modal("show");
+    }
+</script>

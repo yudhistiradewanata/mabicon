@@ -164,7 +164,7 @@ class TradingController extends MY_Controller
         
         // Get user's withdrawal request history
         $withdrawalRequests = $this->db->where('user_id', $userId)->order_by('created_at', 'DESC')->get('withdrawal_requests')->result();
-        $usdtAddresses=$this->db->where('user_id',$userId)->order_by('is_default desc')->get('usdt_addresses')->result();
+        $usdtAddresses=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('is_default desc')->get('usdt_addresses')->result();
         $tradingAccounts=$this->db->where('user_id',$userId)->where('status','approved')->get('trading_accounts')->result();
         $data = [
             'withdrawalRequests' => $withdrawalRequests,

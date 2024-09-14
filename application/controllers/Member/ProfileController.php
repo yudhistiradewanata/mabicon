@@ -26,7 +26,7 @@ class ProfileController extends MY_Controller
         // Get user's profile information
         $user = $this->userModel->find($userId);
         $loginHistories=$this->db->where('user_id',$userId)->order_by('login_date desc')->get('login_histories')->result();
-        $usdtAddresses=$this->db->where('user_id',$userId)->order_by('created_at desc')->get('usdt_addresses')->result();
+        $usdtAddresses=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('created_at desc')->get('usdt_addresses')->result();
         $kyc=$this->db->where('user_id',$userId)->order_by('id desc')->get('kyc')->row();
         if (!$user) {
             $this->session->set_flashdata('error', 'User not found.');redirect('member/profile');
@@ -144,10 +144,23 @@ class ProfileController extends MY_Controller
         $this->load->view('member/layout/master', ['content' => $content, 'title' => 'Upload KYC']);
     }
 
-    public function createUSDTAddress(){
-
+    public function addUSDTAddress(){
+        $userId = $this->session->userdata('user_id');
+        // Get user's profile information
+        $user = $this->userModel->find($userId);
+        $title=$this->input->post('title');
+        $usdt_address=$this->input->post('usdt_address');
+        if($this->usdtAddressModel->addUSDTAddress($user->id,$title,$usdt_address)){
+            $this->session->set_flashdata('success', 'USDT Address added successfully.');redirect('member/profile');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Process Failed, contact Admin.');redirect($this->input->server('HTTP_REFERER'));
+        }
+        redirect('member/profile#usdtAddresses');
     }
     public function defaultUSDTAddress($id){
-
+        $userId = $this->session->userdata('user_id');
+        $this->usdtAddressModel->setDefaultAddress($id,$userId);
+        redirect('member/profile#usdtAddresses');
     }
 }

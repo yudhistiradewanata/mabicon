@@ -46,7 +46,7 @@
                                         <input type="hidden" id="platform" name="platform">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Username / Email</label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username or email" value="testuser" required>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username or email"  required>
                                         </div>
 
                                         <div class="mb-3">
@@ -55,7 +55,7 @@
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" name="password" value="123" required>
+                                                <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" name="password" required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>

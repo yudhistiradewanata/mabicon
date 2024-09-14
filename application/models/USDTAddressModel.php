@@ -23,7 +23,7 @@ class USDTAddressModel extends CI_Model
     public function find($id){
         return $this->db->where('id',$id)->get($this->table)->row();
     }
-    public function addUSDTAddress($user_id, $usdt_address, $is_default = false, $is_broker_address = false)
+    public function addUSDTAddress($user_id, $title, $usdt_address, $is_default = false, $is_broker_address = false)
     {
         // If this is to be the default address, unset previous defaults
         if ($is_default) {
@@ -35,8 +35,9 @@ class USDTAddressModel extends CI_Model
         $data = [
             'user_id' => $user_id,
             'usdt_address' => $usdt_address,
+            'title'=>$title,
             'is_default' => $is_default,
-            'is_broker_address' => $is_broker_address,
+            // 'is_broker_address' => $is_broker_address,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'deleted_at' => null
