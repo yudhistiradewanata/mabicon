@@ -95,7 +95,7 @@ class TradingController extends MY_Controller
             $accountId = $this->input->post('account_id');
             $withdrawal_amount = $this->input->post('withdrawal_amount');
             $otp = $this->input->post('otp');
-            $usdtAddress = $this->input->post('usdt_address');
+            $withdraw_to = $this->input->post('withdraw_to');
 
             // Check if OTP matches
             $user = $this->db->where('id',$userId)->get('users')->row();
@@ -119,7 +119,7 @@ class TradingController extends MY_Controller
                 'withdrawal_amount' => $withdrawal_amount,
                 'otp_sent_to_email' => $user->email,
                 'otp'=>$otp,
-                'usdt_address' => $usdtAddress,
+                'withdraw_to' => $withdraw_to,
                 'status' => 'pending'
             ];
             // pre($data);
@@ -165,11 +165,13 @@ class TradingController extends MY_Controller
         // Get user's withdrawal request history
         $withdrawalRequests = $this->db->where('user_id', $userId)->order_by('created_at', 'DESC')->get('withdrawal_requests')->result();
         $usdtAddresses=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('is_default desc')->get('usdt_addresses')->result();
+        $bankAccounts=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('is_default desc')->get('bank_accounts')->result();
         $tradingAccounts=$this->db->where('user_id',$userId)->where('status','approved')->get('trading_accounts')->result();
         $data = [
             'withdrawalRequests' => $withdrawalRequests,
             'usdtAddresses'=>$usdtAddresses,
-            'tradingAccounts'=>$tradingAccounts
+            'tradingAccounts'=>$tradingAccounts,
+            'bankAccounts'=>$bankAccounts
         ];
 
         $content = $this->load->view('member/trading/withdrawal_history', $data, true);

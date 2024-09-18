@@ -46,7 +46,10 @@ class TopUpRequestModel extends CI_Model
     }
 
     public function insertTopUpRequest($user_id, $account_id, $amount, $proof_file, $destination, $status = 'pending', $reviewed_by_admin_id = null)
-    {
+    {   
+        $transferto=explode("|",$destination);
+        $destination=$transferto[0];
+        $target=$transferto[1];
         $data = [
             'user_id' => $user_id,
             'account_id' => $account_id,
@@ -54,6 +57,7 @@ class TopUpRequestModel extends CI_Model
             'topup_date' => date('Y-m-d H:i:s'),
             'transfer_proof_file' => $proof_file,
             'transfer_destination' => $destination,
+            'transfer_destination_target'=>$target,
             'status' => $status,
             'reviewed_by_admin_id' => $reviewed_by_admin_id,
             'created_at' => date('Y-m-d H:i:s'),

@@ -27,6 +27,7 @@ class ProfileController extends MY_Controller
         $user = $this->userModel->find($userId);
         $loginHistories=$this->db->where('user_id',$userId)->order_by('login_date desc')->get('login_histories')->result();
         $usdtAddresses=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('created_at desc')->get('usdt_addresses')->result();
+        $bankAccounts=$this->db->where('user_id',$userId)->where('deleted_at is null')->order_by('created_at desc')->get('bank_accounts')->result();
         $kyc=$this->db->where('user_id',$userId)->order_by('id desc')->get('kyc')->row();
         if (!$user) {
             $this->session->set_flashdata('error', 'User not found.');redirect('member/profile');
@@ -57,6 +58,7 @@ class ProfileController extends MY_Controller
             'user' => $user,
             'loginHistories'=>$loginHistories,
             'usdtAddresses'=>$usdtAddresses,
+            'bankAccounts'=>$bankAccounts,
             'activeTab'=>$activeTab,
             'kyc'=>$kyc
         ];
@@ -162,5 +164,25 @@ class ProfileController extends MY_Controller
         $userId = $this->session->userdata('user_id');
         $this->usdtAddressModel->setDefaultAddress($id,$userId);
         redirect('member/profile#usdtAddresses');
+    }
+    public function addBankAccount(){
+        $userId = $this->session->userdata('user_id');
+        // Get user's profile information
+        $user = $this->userModel->find($userId);
+        $bank_name=$this->input->post('bank_name');
+        $account_holder_name=$this->input->post('account_holder_name');
+        $account_number=$this->input->post('account_number');
+        if($this->bankAccountModel->addBankAccount($user->id,$bank_name,$account_holder_name,$account_number)){
+            $this->session->set_flashdata('success', 'Bank Account added successfully.');redirect('member/profile');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Process Failed, contact Admin.');redirect($this->input->server('HTTP_REFERER'));
+        }
+        redirect('member/profile#bankAccountes');
+    }
+    public function defaultBankAccount($id){
+        $userId = $this->session->userdata('user_id');
+        $this->bankAccountModel->setDefaultAccount($id,$userId);
+        redirect('member/profile#bankAccountes');
     }
 }

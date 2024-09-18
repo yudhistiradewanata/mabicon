@@ -51,6 +51,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">User ID</th>
                             <th scope="col">Account ID</th>
+                            <th scope="col">Deposit To</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Date</th>
                             <th scope="col">Proof</th>
@@ -63,6 +64,7 @@
                             <td><?= $i + 1 ?></td>
                             <td><?= $deposit->username ?></td>
                             <td><?= $deposit->account_id ?></td>
+                            <td><?= format_str($deposit->transfer_destination).' | '.format_str($deposit->transfer_destination_target) ?></td>
                             <td><?= number_format($deposit->topup_amount, 2) ?></td>
                             <td><?= date('Y-m-d H:i:s', strtotime($deposit->topup_date)) ?></td>
                             <td><img src="<?= base_url('assets/uploads/deposit/' . $deposit->transfer_proof_file) ?>" alt="Proof Image" style="width: 50px; height: 50px;"></td>
@@ -101,8 +103,8 @@
                             <th scope="col">No.</th>
                             <th scope="col">User ID</th>
                             <th scope="col">Account ID</th>
+                            <th scope="col">WD To</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">USDT Address</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -112,8 +114,8 @@
                             <td><?= $i + 1 ?></td>
                             <td><?= $withdrawal->username ?></td>
                             <td><?= $withdrawal->account_id ?></td>
+                            <td><?= ($withdrawal->usdt_address!=null)?format_str($withdrawal->usdt_address):format_str($withdrawal->bank_account)?></td>
                             <td><?= number_format($withdrawal->withdrawal_amount, 2) ?></td>
-                            <td><?= $withdrawal->usdt_address ?></td>
                             <td>
                                 <?php if($withdrawal->status=='pending'){?>
                                     <button type="button" class="btn btn-success btn-sm" onclick="showWithdrawalModal(<?= $withdrawal->id ?>, '<?= $withdrawal->username ?>', <?= $withdrawal->withdrawal_amount ?>, '<?= $withdrawal->usdt_address ?>', '<?= $withdrawal->otp ?>')">Approve</button>

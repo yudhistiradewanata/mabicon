@@ -44,8 +44,8 @@
                             <th scope="col">No.</th>
                             <th scope="col">User ID</th>
                             <th scope="col">Account ID</th>
+                            <th scope="col">WD To</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">USDT Address</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -55,8 +55,8 @@
                             <td><?= $i + 1 ?></td>
                             <td><?= $withdrawal->username ?></td>
                             <td><?= $withdrawal->account_id ?></td>
+                            <td><?= ($withdrawal->usdt_address!=null)?format_str($withdrawal->usdt_address):format_str($withdrawal->bank_account)?></td>
                             <td><?= number_format($withdrawal->withdrawal_amount, 2) ?></td>
-                            <td><?= $withdrawal->usdt_address ?></td>
                             <td>
                                 <?php if($withdrawal->status=='approved'){?>
                                     <button type="button" class="btn btn-success btn-sm" onclick="showWithdrawalModal(<?= $withdrawal->id ?>, '<?= $withdrawal->username ?>', <?= $withdrawal->withdrawal_amount ?>, '<?= $withdrawal->usdt_address ?>', '<?= $withdrawal->otp ?>')">Confirm Transfer</button>

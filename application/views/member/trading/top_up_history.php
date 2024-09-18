@@ -27,7 +27,7 @@
                             <td><?=($i+1)?></td>
                             <td><?=$row->account_id?></td>
                             <td><?=dmy($row->topup_date)?></td>
-                            <td><?=format_str($row->transfer_destination)?></td>
+                            <td><?=format_str($row->transfer_destination.' | '.$row->transfer_destination_target)?></td>
                             <td><?=number_format($row->topup_amount,2)?></td>
                             <td><?=format_str($row->status)?></td>
                             <td><a href="<?=base_url('assets/uploads/deposit/'.$row->transfer_proof_file)?>" target="_blank"><img src="<?=base_url('assets/uploads/deposit/'.$row->transfer_proof_file)?>" width="100"></a></td>
@@ -73,27 +73,20 @@
                         </div>
                         <div class="mb-3 col-md-12">
                             <label for="" class="form-label">Transfer TO</label>
-                            <input type="text" class="form-control" id="" name="transfer_destination" readonly value="TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">
+                            <select class="form-select" id="transfer-destination" name="transfer_destination" onchange="selecttransferdest(this)" required>
+                                <option value="">Choose Transfer Destination</option>
+                                <option value="usdt_address|TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">USDT | TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2</option>
+                                <option value="bank_account|ABSA BANK - ROSE BANK - 41-1126-6763">Bank Transfer | ABSA BANK - ROSE BANK - 41-1126-6763</option>
+                                <option value="bank_account|Rochmad Indra Kusuma - BCA - 7851178019">Bank Transfer | Rochmad Indra Kusuma - BCA - 7851178019</option>
+                            </select>
                         </div>
-                        <div class="mb-3 col-md-12">
-                            <label for="" class="form-label">OR Transfer TO</label>
-                            <ul class="nav nav-tabs nav-tabs-custom nav-success p-2 pb-0 bg-light" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab-international" role="tab" aria-selected="true">
-                                        International Payment
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-indonesian" role="tab" aria-selected="false">
-                                        Local Indonesian Depositor
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-malaysian" role="tab" aria-selected="false">
-                                        Local Malaysian Depositor
-                                    </a>
-                                </li>
-                            </ul>
+                        
+                        <div class="mb-3 col-md-12 d-none" id="transfer-to-usdt">
+                            <label for="" class="form-label">Transfer TO</label>
+                            <input type="text" class="form-control" disabled value="TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2">
+                        </div>
+                        <div class="mb-3 col-md-12 d-none" id="transfer-to-rosebank">
+                            <label for="" class="form-label">Transfer TO</label>
                             <div class="tab-content" style="padding:10px;border:1px solid grey;" >
                                 <div class="tab-pane active" id="tab-international" role="tabpanel">
                                     Account Name: MABICON (PTY) LTD<br>
@@ -106,19 +99,17 @@
                                     Address: 7th Floor, Absa Towers West. 15 Troye Street, Johannesburg, 2001<br>
                                     Status: ACTIVE
                                 </div>
-                                <div class="tab-pane" id="tab-indonesian" role="tabpanel">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-12 d-none" id="transfer-to-bca">
+                            <label for="" class="form-label">Transfer TO</label>
+                            <div class="tab-content" style="padding:10px;border:1px solid grey;" >
+                                <div class="tab-pane active" id="tab-indonesian" role="tabpanel">
                                     Name: Rochmad Indra Kusuma <br>
                                     Bank Account : 7851178019<br>
                                     Swift code : CENAIDJAXXX<br>
                                     Bank Central Asia<br>
                                     Indonesia
-                                </div>
-                                <div class="tab-pane" id="tab-malaysian" role="tabpanel">
-                                    Name: Strong Sign Empire <br>
-                                    Bank Account : 03701027334<br>
-                                    Swift code : HLIBMYKL XXX<br>
-                                    Hong Leong Bank <br>
-                                    Malaysia
                                 </div>
                             </div>
                         </div>
@@ -131,4 +122,23 @@
 </div>
 <script>
     $("#main-dt").DataTable();
+    function selecttransferdest(elm){
+        console.log($(elm).val());
+        if($(elm).val()=="usdt_address|TRC20 - TR4zFfbpYBWcC6kRt2RuNUmwA9BxeTNbd2"){
+            $("#transfer-to-usdt").removeClass("d-none");
+            $("#transfer-to-rosebank").addClass("d-none");
+            $("#transfer-to-bca").addClass("d-none");
+        }
+        else if($(elm).val()=="bank_account|ABSA BANK - ROSE BANK - 41-1126-6763"){
+            $("#transfer-to-usdt").addClass("d-none");
+            $("#transfer-to-rosebank").removeClass("d-none");
+            $("#transfer-to-bca").addClass("d-none");
+        }
+        else if($(elm).val()=="bank_account|Rochmad Indra Kusuma - BCA - 7851178019"){
+            $("#transfer-to-usdt").addClass("d-none");
+            $("#transfer-to-rosebank").addClass("d-none");
+            $("#transfer-to-bca").removeClass("d-none");
+        }
+        // alert($(this).val());
+    }
 </script>

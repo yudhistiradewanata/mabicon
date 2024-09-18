@@ -27,7 +27,7 @@
                             <td><?=($i+1)?></td>
                             <td><?=$row->account_id?></td>
                             <td><?=dmy($row->created_at)?></td>
-                            <td><?=format_str($row->usdt_address)?></td>
+                            <td><?= ($row->usdt_address!=null)?format_str($row->usdt_address):format_str($row->bank_account)?></td>
                             <td><?=number_format($row->withdrawal_amount,2)?></td>
                             <td><?=format_str($row->status)?></td>
                             <td></td>
@@ -49,7 +49,20 @@
       <div class="modal-body text-center p-5">
         <?= form_open_multipart('member/trading/withdraw') ?>
           <div class="row">
-            <div class="mb-3 col-md-6">
+            <div class="mb-3 col-md-12">
+              <label for="withdraw_to" class="form-label">Withdraw to</label>
+              <select class="form-select" id="withdraw_to" name="withdraw_to" required>
+                <option value="">Choose Withdraw Destination</option>
+                <?php foreach($usdtAddresses as $row){?>
+                    <option value="usdt_address|<?=$row->usdt_address?>">TRC20 | <?=$row->usdt_address?></option>
+                <?php } ?>
+                <?php foreach($bankAccounts as $row){?>
+                    <option value="bank_account|<?=$row->bank_name.' - '.$row->account_holder_name.' - '.$row->account_number?>">Bank Transfer | <?=$row->bank_name.' - '.$row->account_holder_name.' - '.$row->account_number?></option>
+                <?php } ?>
+              </select>
+            </div>
+            
+            <div class="mb-3 col-md-4">
                 <label for="account_id" class="form-label">Trading Account</label>
                 <select class="form-control" id="account_id" name="account_id" required>
                     <?php foreach($tradingAccounts as $account): ?>
@@ -57,19 +70,11 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="mb-3 col-md-6">
+            <div class="mb-3 col-md-4">
               <label for="withdrawal_amount" class="form-label">Withdrawal Amount</label>
               <input type="number" step="0.01" class="form-control" id="withdrawal_amount" name="withdrawal_amount" required>
             </div>
-            <div class="mb-3 col-md-6">
-              <label for="usdt_address" class="form-label">Withdraw to USDT Address</label>
-              <select class="form-select" id="usdt_address" name="usdt_address" required>
-                <?php foreach($usdtAddresses as $row){?>
-                    <option value="<?=$row->usdt_address?>"><?=$row->usdt_address?></option>
-                <?php } ?>
-              </select>
-            </div>
-            <div class="mb-3 col-md-6">
+            <div class="mb-3 col-md-4">
               <label for="otp" class="form-label">OTP</label>
               <input type="text" class="form-control" id="otp" name="otp" required>
               <button type="button" class="btn btn-secondary mt-2" id="requestOtpBtn">Request OTP</button>

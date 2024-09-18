@@ -21,6 +21,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?=($activeTab=='bankAccounts')?'active':''?>" data-bs-toggle="tab" href="#bankAccounts" role="tab">
+                            <i class="far fa-envelope"></i> Bank Accounts
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?=($activeTab=='kyc')?'active':''?>" data-bs-toggle="tab" href="#kyc" role="tab">
                             <i class="fas fa-home"></i> KYC
                         </a>
@@ -166,6 +171,41 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="tab-pane <?=($activeTab=='bankAccounts')?'active':''?>" id="bankAccounts" role="tabpanel">
+                        <button type="button" onclick="newBankAccount()" class="btn btn-primary"><i class="fa fa-plus"></i> New Bank Account</button>
+                        <table id="usdt-dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%;margin-top: 20px;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Bank</th>
+                                    <th scope="col">AccName</th>
+                                    <th scope="col">AccNum</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($bankAccounts as $i=>$row){?>
+                                <tr>
+                                    <td><?=($i+1)?></td>
+                                    
+                                    <td><?=dmy($row->created_at)?></td>
+                                    <td><?=$row->bank_name?></td>
+                                    <td><?=$row->account_holder_name?></td>
+                                    <td><?=$row->account_number?></td>
+                                    <td>
+                                        <?php if($row->is_default){?>
+                                            <span class="badge bg-success">Default</span>
+                                        <?php }else{ ?>
+                                            <a class="badge bg-primary" href="<?=site_url('member/profile/defaultBankAccount/'.$row->id)?>">Make Default</a>
+                                        <?php } ?>
+                                    </td>
+                                    
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="tab-pane <?=($activeTab=='kyc')?'active':''?>" id="kyc" role="tabpanel">
                         <?=form_open_multipart('member/profile/uploadKYC')?>
                             <div class="row">
@@ -243,8 +283,52 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="addBankModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addBankModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kycModalLabel">Add New Bank Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-5">
+                <?= form_open('member/profile/addBankAccount', ['id' => 'addBankForm', 'class' => 'd-inline']) ?>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="bank-name" class="form-label">Bank</label>
+                        <input type="text" class="form-control" name="bank_name" id="bank-name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Default Address</label>
+                        <select class="form-select" name="is_default" id="is_default" required>
+                            <option value="">-- PLEASE SELECT --</option>
+                            <option value="1">YES</option>
+                            <option value="0">NO</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="account-number" class="form-label">Account No</label>
+                        <input type="text" class="form-control" name="account_number" id="account-number">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="account-holder-name" class="form-label">Account Holder Name</label>
+                        <input type="text" class="form-control" name="account_holder_name" id="account-holder-name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">    
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     function newUsdtAddress(){
         $("#addUsdtModal").modal("show");
+    }
+    function newBankAccount(){
+        $("#addBankModal").modal("show");
     }
 </script>

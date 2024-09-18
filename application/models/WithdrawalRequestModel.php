@@ -47,7 +47,16 @@ class withdrawalRequestModel extends CI_Model
         $account_id = $data['account_id'];
         $withdrawal_amount = $data['withdrawal_amount'];
         $otp = $data['otp_sent_to_email'];
-        $usdt_address = $data['usdt_address'];
+        $withdraw_to=explode("|",$data['withdraw_to']);
+        $usdt_address=null;
+        $bank_account=null;
+        if($withdraw_to[0]=='usdt_address'){
+            $usdt_address = $withdraw_to[1];    
+        }
+        else{
+            $bank_account = $withdraw_to[1];
+        }
+        
         $status = isset($data['status']) ? $data['status'] : 'pending';
         $reviewed_by_admin_id = isset($data['reviewed_by_admin_id']) ? $data['reviewed_by_admin_id'] : null;
 
@@ -58,6 +67,7 @@ class withdrawalRequestModel extends CI_Model
             'withdrawal_amount' => $withdrawal_amount,
             'otp_sent_to_email' => $otp,
             'usdt_address' => $usdt_address,
+            'bank_account' => $bank_account,
             'status' => $status,
             'reviewed_by_admin_id' => $reviewed_by_admin_id,
             'created_at' => date('Y-m-d H:i:s'),
