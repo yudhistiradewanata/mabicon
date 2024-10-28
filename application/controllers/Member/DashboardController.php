@@ -8,6 +8,8 @@ class DashboardController extends MY_Controller
     {
         // echo "A";exit;
         $userId = $this->session->userdata('user_id');
+        // pre(getSession('kyc_approved'));
+        // pre($this->session);
 
         // Check KYC status
         $kycStatus = $this->kycModel->getKYC(['user_id' => $userId]);

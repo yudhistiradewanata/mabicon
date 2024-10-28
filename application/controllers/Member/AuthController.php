@@ -17,7 +17,7 @@ class AuthController extends MY_Controller
                     'user_id'=>$user->id,
                     'platform'=>$this->input->post('platform'),
                     'browser'=>$this->input->post('browserCode'),
-                    'login_date'=>date("Y-m-d H:i:s"),
+                    'login_date'=>date("Y-m-d H:i:s")
                 ]);
                 // Set user session data
                 $this->setUserSession($user);

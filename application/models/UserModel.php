@@ -53,6 +53,14 @@ class UserModel extends CI_Model
         $user = $this->db->where('username', $username)->or_where('email',$username)->get($this->table)->row();
 
         if ($user && password_verify($password, $user->password_hash)) {
+            $kyc=$this->db->where('user_id',$user->id)->order_by('id desc')->get('kyc')->row();
+            if($kyc==null){
+                $user->kyc_status=null;
+            }
+            else{
+                $user->kyc_status=$kyc->status;
+            }
+            // pre($user);
             return $user;
         }
 

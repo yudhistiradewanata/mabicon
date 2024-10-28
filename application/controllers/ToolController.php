@@ -26,6 +26,11 @@ class ToolController extends MY_Controller
         $this->db->where('id',$admin_id)->set(['password_hash'=>$password_hash])->update('admins');
         echo "OK";
     }
+    public function testMT5($authid){
+        $this->load->model("mt5model");
+        $this->mt5model->test($authid);
+
+    }
     public function createTestData()
     {
         $this->truncateAllTables();

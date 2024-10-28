@@ -35,6 +35,25 @@
             </div>
             <!-- End Page-content -->
             <?php $this->load->view('member/layout/footer') ?>
+
+            <div class="modal fade" id="kycModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Pending KYC Status</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            You must do your KYC & wait for Approval before you can use this function!
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <a href="<?=site_url('member/profile/kyc')?>" class="btn btn-primary">Do/Check my KYC</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- end main content-->
     </div>
@@ -57,6 +76,9 @@
             $temp.remove();
             alert('Link copied to clipboard');
         });
+        function show_kyc(){
+            $("#kycModal").modal("show");
+        }
     </script>
 </body>
 </html>

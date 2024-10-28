@@ -66,16 +66,6 @@
                         <input type="text" class="form-control" id="modal_requested_at" readonly>
                     </div>
                 </div>
-                <div class="row mb-3 approve-section">
-                    <div class="col-md-6">
-                        <label for="account_id" class="form-label">Trading Account ID</label>
-                        <input type="text" class="form-control" id="account_id" name="account_id">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="account_id" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="account_password" name="password">
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-6 approve-section">
                         <?= form_open('admin/trading-account-management/approve', ['id' => 'approveForm', 'class' => 'd-inline']) ?>

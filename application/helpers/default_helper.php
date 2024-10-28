@@ -76,9 +76,15 @@ function getAdminCountBadge(){
     $countPendingWithdrawal=$ci->db->where('status','pending')->count_all_results('withdrawal_requests');
     $countPendingTopup=$ci->db->where('status','pending')->count_all_results('top_up_requests');
     $countPendingAccount=$ci->db->where('status','pending')->count_all_results('trading_accounts');
+
+    // $countMt5User=$ci->db->where('mt5_clientid is null')->join('kyc k','u.id=k.user_id')->where('k.status','approved')->count_all_results('users u');
+    $countMt5User=0;
+    $countMt5Account=$ci->db->where('mt5_login is null')->count_all_results('trading_accounts');
+    // $countMt5User=$ci->db->where('mt_login is null')->count_all_results('users');
     return [
         'countPendingAccount'=>$countPendingAccount?:0,
         'countPendingKyc'=>$countPendingKyc?:0,
-        'countPendingTransaction'=>($countPendingWithdrawal?:0)+($countPendingTopup?:0)
+        'countPendingTransaction'=>($countPendingWithdrawal?:0)+($countPendingTopup?:0),
+        'countMt5Api'=>($countMt5User?:0)+($countMt5Account?:0)
     ];
 }

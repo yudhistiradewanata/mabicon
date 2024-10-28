@@ -106,7 +106,7 @@ class ProfileController extends MY_Controller
     public function uploadKYC()
     {
         $userId = $this->session->userdata('user_id');
-        
+        $post=$this->input->post();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $config['upload_path'] = './assets/uploads/kyc/';
             $config['allowed_types'] = 'jpg|jpeg|png|pdf';
@@ -125,6 +125,7 @@ class ProfileController extends MY_Controller
                 $data = [
                     'user_id' => $userId,
                     'image' => $filePath,
+                    'id_number'=>$post['id_number'],
                     'status' => 'pending'
                 ];
 

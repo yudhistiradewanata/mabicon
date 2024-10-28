@@ -92,6 +92,31 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="ri-account-circle-line"></i> <span data-key="t-authentication">MT5 API</span>
+                        &nbsp;<span class="topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"><?=$countBadge['countMt5Api']?></span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAuth">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?=site_url('admin/mt5-api/account')?>" class="nav-link">
+                                    <i class="ri-exchange-line"></i> <span>Pending Account</span>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="<?=site_url('admin/mt5-api/deposit')?>" class="nav-link">
+                                    <i class="ri-chat-history-line"></i> <span>Pending Deposit</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=site_url('admin/mt5-api/withdrawal')?>" class="nav-link">
+                                    <i class="ri-pie-chart-line"></i> <span>Pending Withdrawal</span>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
                 
             </ul>
         </div>

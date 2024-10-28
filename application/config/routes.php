@@ -76,6 +76,7 @@ $route['admin/bonus-management/(:any)'] = 'Admin/BonusManagementController/$1';
 $route['admin/support/(:any)'] = 'Admin/SupportController/$1';
 $route['admin/kyc-management/(:any)'] = 'Admin/KYCManagementController/$1';
 $route['admin/balance-management/(:any)'] = 'Admin/BalanceManagementController/$1';
+$route['admin/mt5-api/(:any)'] = 'Admin/Mt5ApiController/$1';
 
 $route['member'] = 'Member/DashboardController';
 $route['member/auth'] = 'Member/AuthController';

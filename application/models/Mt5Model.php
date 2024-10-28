@@ -1,59 +1,87 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AdminModel extends CI_Model
+class Mt5Model extends CI_Model
 {
-    private $table='admins';
-    public function getAdmins($filter = [])
-    {
-        if (isset($filter['username']) && !empty($filter['username'])) {
-            $this->db->where('username', $filter['username']);
+    private $_auth=[
+        '1059'=>'-bA0ToEu',
+        '1060'=>'5cTbEi-k'
+    ];
+    private $_group=[
+        '1059'=>'',
+        '1060'=>''
+    ];
+    public function __construct(){
+        parent::__construct();
+        $this->load->library('CMT5Request');
+    }
+    public function test($authid){
+        // Example of use
+        $request = new CMT5Request();
+        // authenticate on the server using the auth command
+        if ($request->init() && $request->auth($authid, $this->_auth[$authid], 1985, "WebManager")) {
+            // Let us request the symbol named TEST using the symbol_get command
+            $result = $request->get('/api/common/get');
+            if ($result != false) {
+                echo $result;
+                $json = json_decode($result);
+            }
         }
+        $request->shutdown();
+    }
+    private function post($authid,$path,$data){
+        $json=false;
+        $request = new CMT5Request();
+        if ($request->init() && $request->auth($authid, $this->_auth[$authid], 1985, "WebManager")) {
+            $result = $request->post($path,json_encode($data));
+            if ($result != false) {
+                // echo $result;
+                $json = json_decode($result);
 
-        if (isset($filter['email']) && !empty($filter['email'])) {
-            $this->db->where('email', $filter['email']);
+            }
+            else{
+                $json=false;
+            }
         }
+        $request->shutdown();
+        return $json;
+    }
+    public function createUser($authid,$account){
+        $path="/api/user/add";
+        $passmain=generateRandomString(8);
+        $passinvestor=generateRandomString(8);
+        $post=[
+            'login'=>'0',
+            'group'=>'',
+            'pass_main'=>$passmain,
+            'pass_investor'=>$passinvestor,
+            'group'=>$this->_group[$authid],
+            'id'=>$account->kyc_id_number,
+            'name'=>$account->account_name,
+            'leverage'=>100
+        ];
 
-        if (isset($filter['role']) && !empty($filter['role'])) {
-            $this->db->where('role', $filter['role']);
+        try{
+            $response=$this->post($authid,$path,$post);    
+            if($response==false){
+                return false;
+            }
+            $updatedata=[
+                'mt5_login'=>$response->login,
+                'mt5_passmain'=>$passmain,
+                'mt5_passinvenstor'=>$passinvestor,
+                'group'=>$this->_group[$authid]
+            ];
+            $this->db->where('trading_account',$account->id)->set($updatedata);
+            $this->session->set_flashdata('success', 'Account have been created in MT5, on ID: '.$response->login);
+            return $updatedata;
         }
-
-        if (isset($filter['status']) && !empty($filter['status'])) {
-            $this->db->where('status', $filter['status']);
+        catch(Exception $e){
+            return false;
         }
-
-        return $this->db->get($this->table)->result();
     }
-    public function find($id){
-        return $this->db->where('id',$id)->get($this->table)->row();
-    }
-    public function addAdmin($data)
-    {
-        $data['created_at'] = date('Y-m-d H:i:s');
-        $data['updated_at'] = date('Y-m-d H:i:s');
-        $data['deleted_at'] = null;
-        return $this->db->insert($this->table,$data);
+    public function createClient($authid,$user){
+        return true;
     }
 
-    public function updateAdmin($id, $data)
-    {
-        $data['updated_at'] = date('Y-m-d H:i:s');
-        return $this->db->update($this->table,$id, $data);
-    }
-
-    public function deleteAdmin($id)
-    {
-        return $this->db->delete($this->table,$id);
-    }
-
-    public function authenticate($username, $password)
-    {
-        $admin = $this->db->where('username', $username)->or_where('email',$username)->get($this->table)->row();
-
-        if ($admin && password_verify($password, $admin->password_hash)) {
-            return $admin;
-        }
-
-        return false;
-    }
 }

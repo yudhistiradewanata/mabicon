@@ -20,9 +20,9 @@ class ClientManagementController extends MY_Controller
         $users = $this->userModel->getUsers(array_filter($filters));
 
         foreach ($users as $user) {
-            $user->current_balance = $this->db->where('user_id', $user->id)->select('ifnull(sum(debit_amount-credit_amount),0) as amount')->get('balances')->row()->amount;
-            $user->has_pending_deposit = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('top_up_requests') > 0;
-            $user->has_pending_withdrawal = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('withdrawal_requests') > 0;
+            // $user->current_balance = $this->db->where('user_id', $user->id)->select('ifnull(sum(debit_amount-credit_amount),0) as amount')->get('balances')->row()->amount;
+            // $user->has_pending_deposit = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('top_up_requests') > 0;
+            // $user->has_pending_withdrawal = $this->db->where('user_id', $user->id)->where('status', 'pending')->count_all_results('withdrawal_requests') > 0;
         }
 
         $data = [

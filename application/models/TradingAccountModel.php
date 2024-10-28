@@ -28,12 +28,10 @@ class TradingAccountModel extends CI_Model
         return $this->db->insert($this->table, $data);
     }
 
-    public function approve($id, $account_id,$password)
+    public function approve($id)
     {
         $data = [
             'status' => 'approved',
-            'account_id' => $account_id,
-            'password'=>$password,
             'updated_at' => date('Y-m-d H:i:s')
         ];
         // pre($data);

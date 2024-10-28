@@ -226,6 +226,12 @@
                                         <input type="text" class="form-control" placeholder="Enter your email" value="<?=format_str(isset($kyc)?$kyc->status:'KYC Not Done')?>" disabled>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">ID Number (must be same as KYC)</label>
+                                        <input type="text" class="form-control" placeholder="Enter your ID number as stated in your KYC document" value="<?=$kyc->id_number?>" name="id_number" <?php if($kyc!=null){?>disabled<?php } ?>>
+                                    </div>
+                                </div>
                                 <?php if($kyc==null){?>
                                 <div class="col-lg-12">
                                     <div class="hstack">
